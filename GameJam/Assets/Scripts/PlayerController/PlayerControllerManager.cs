@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem.Utilities;
 namespace PlayerController {
 	public class PlayerControllerManager : MonoBehaviour {
@@ -10,6 +11,7 @@ namespace PlayerController {
 	
 		void Start() {
 			AssignGamepads();
+			
 		}
 		private void AssignGamepads() {
 			allGamepads = Gamepad.all;
