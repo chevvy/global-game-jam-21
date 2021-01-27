@@ -20,13 +20,14 @@ namespace PlayerController {
 		}
 
 		void Update() {
-			SetDirection(playerMovement);
+			
 		}
 
 		void FixedUpdate () {
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
  
 			playerRigidBody.AddForce (movement * playerSpeed);
+			SetDirection(playerMovement);
 		}
 		#endregion
 		
