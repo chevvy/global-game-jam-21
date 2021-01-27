@@ -9,9 +9,6 @@ namespace PlayerController {
 		private int numberOfConnectedController => assignedGamepads.Count;
 	
 		void Start() {
-			Debug.Log("Current gamepad = " + Gamepad.current.deviceId);
-			Debug.Log("Keyboard" + Keyboard.current.deviceId);
-			
 			AssignGamepads();
 		}
 		private void AssignGamepads() {
