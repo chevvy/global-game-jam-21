@@ -1,12 +1,18 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+
 namespace PlayerController {
 	public class PlayerController : MonoBehaviour {
-		public float PlayerSpeed = 2f;
-		
+		[FormerlySerializedAs("PlayerSpeed")] public float playerSpeed = 2f;
+		public float turnSmoothTime = 0.1f;
+		private float internalSmoothingTime = 0.5f; // using this because the value from the input are too low
 		private Rigidbody playerRigidBody;
 		private Vector2 playerMovement;
+
+		private float turnSmoothVelocity;
+		
 
 		#region Unity public fonctions
 		void Start() {
@@ -20,7 +26,7 @@ namespace PlayerController {
 		void FixedUpdate () {
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
  
-			playerRigidBody.AddForce (movement * PlayerSpeed);
+			playerRigidBody.AddForce (movement * playerSpeed);
 		}
 		#endregion
 		
@@ -35,7 +41,10 @@ namespace PlayerController {
 			if (direction.magnitude >= 0.1f)
 			{
 				float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-				transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+				// smooth angle turning motion as to not jump between different direction
+				float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref targetAngle,
+					turnSmoothTime * internalSmoothingTime);
+				transform.rotation = Quaternion.Euler(0f, angle, 0f);
 			}
 		}
 
@@ -45,10 +54,6 @@ namespace PlayerController {
 			
 			if(context.performed) {
 				playerMovement = context.ReadValue<Vector2>();
-				// left x -1
-				// right x +1
-				// up +1
-				// down -1
 			}
 			if(context.canceled) {
 				playerMovement = Vector3.zero;

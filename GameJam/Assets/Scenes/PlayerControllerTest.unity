@@ -1080,8 +1080,8 @@ Rigidbody:
   m_GameObject: {fileID: 600608299}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 1.02
+  m_Drag: 1
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1177,7 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebfbf87dd05f48d1af2c8970c0e828e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 15
+  playerSpeed: 12
+  turnSmoothTime: 0.1
 --- !u!114 &600608306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1599,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: de4779f1a260c3f44bcb8eab9f8549d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
