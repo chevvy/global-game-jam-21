@@ -9,6 +9,7 @@ namespace Managers
     public class GridManager : MonoBehaviour
     {
         public Material dataNodeMaterial;
+        public Material defaultMaterial;
         
         public GameObject floor;
         private List<GameObject> tiles;
@@ -17,31 +18,44 @@ namespace Managers
         private HashSet<int> indexesOfDataNode;
         public int dataNodeHeightAtSpawn = 100;
         void Awake() {
+            CheckForMissingComponents();
+            InitializeFloorStructure();
+            GenerateRandomDataNodes(numberOfDataNode);
+            SpawnDataNode(indexesOfDataNode);
+        }
+
+        private void GenerateRandomDataNodes(int numberOfNodes) {
+            Random randomDataNodeBlocks = new Random();
+            for (int i = 0; i < numberOfNodes; i++) {
+                int tileNumber = randomDataNodeBlocks.Next(0, tiles.Count);
+                indexesOfDataNode.Add(tileNumber);
+            }
+        }
+
+        private void CheckForMissingComponents() {
             if (dataNodeMaterial == null) {
                 Debug.LogError("Missing ore material on Gridmanager");
+            }
+
+            if (defaultMaterial == null) {
+                Debug.LogError("Missing default material on GridManager");
             }
 
             if (floor == null) {
                 Debug.LogError("Missing floor assignment on Gridmanager");
             }
-
-            InitializeFloorStructure();
-
-            indexesOfDataNode = new HashSet<int>();
-            Random randomDataNodeBlocks = new Random();
-            for (int i = 0; i < numberOfDataNode; i++) {
-                int tileNumber = randomDataNodeBlocks.Next(0, tiles.Count);
-                indexesOfDataNode.Add(tileNumber);
-                Debug.Log("added tile = " + tileNumber);
-            }
-            foreach (int index in indexesOfDataNode) {
-                tiles[index].GetComponent<DataNode.DataNode>().ActivateDataNode();
-            }
-            
         }
 
+
+        public void SpawnDataNode(HashSet<int> indexes) {
+            foreach (int index in indexes) {
+                DataNode.DataNode currentNode = tiles[index].GetComponent<DataNode.DataNode>();
+                currentNode.ActivateDataNode();
+            }
+        }
         private void InitializeFloorStructure() {
             tiles = new List<GameObject>();
+            indexesOfDataNode = new HashSet<int>();
             int tileIndex = 0;
             foreach (Transform child in floor.transform) {
                 GameObject tile = child.gameObject;
@@ -55,10 +69,6 @@ namespace Managers
 
                 tileIndex++;
             }
-        }
-
-        public Material GetDataNodeMaterial() {
-            return dataNodeMaterial;
         }
     }
 }
