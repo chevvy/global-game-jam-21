@@ -19,6 +19,11 @@ namespace Managers
         private HashSet<int> _indexesOfDataNode;
         public int dataNodeHeightAtSpawn = 10;
         public float dataNodeMass = 30f;
+
+        private void OnCollisionEnter(Collision other) {
+            Debug.Log(other.transform.name);
+        }
+
         void Awake() {
             CheckForMissingComponents();
             InitializeFloorStructure();
@@ -74,7 +79,7 @@ namespace Managers
                 node.nodePrefab = tilePrefab;
                 node.gridManager = this;
                 node.dataNodeMass = dataNodeMass;
-                
+
                 _tiles.Add(tile);
 
                 tileIndex++;
