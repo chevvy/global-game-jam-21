@@ -8,8 +8,12 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="DataNode" t="Include">
+            <e p="DataNode.cs" t="Include" />
+          </e>
           <e p="Managers" t="Include">
             <e p="GameManager.cs" t="Include" />
+            <e p="GridManager.cs" t="Include" />
           </e>
           <e p="PlayerController" t="Include">
             <e p="PlayerController.cs" t="Include" />

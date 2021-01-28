@@ -8,7 +8,7 @@ namespace Managers
     public class GameManager : MonoBehaviour
     {
         private static GameManager _gameManager;
-        public static GameManager GameManagerInstance { get { return _gameManager; } }
+        public static GameManager Instance { get { return _gameManager; } }
 
         public CinemachineTargetGroup targetGroup;
         private CinemachineTargetGroup.Target[] targets;
@@ -16,15 +16,26 @@ namespace Managers
         public string CENTER_OF_MAP = "MapCenter";
         public float defaultPlayerWeightToAdjustCamera = 5f;
         
-        private void Awake()
-        {
+        #region Managers
+
+        public GridManager gridManager;
+        private Material _dataNodeMaterial;    
+        
+        #endregion
+
+        private void Awake() {
+            SetsSingleton();
+            _dataNodeMaterial = gridManager.GetDataNodeMaterial();
+            targets = targetGroup.m_Targets;
+        }
+
+        private void SetsSingleton() {
             if (_gameManager != null && _gameManager != this) {
                 Destroy(this.gameObject);
-            } else {
+            }
+            else {
                 _gameManager = this;
             }
-
-            targets = targetGroup.m_Targets;
         }
 
         public void AddCameraTarget(PlayerController.PlayerController player)
@@ -37,6 +48,10 @@ namespace Managers
                 targets[i].weight = defaultPlayerWeightToAdjustCamera;
                 return;
             }
+        }
+        
+        public Material GetDataNodeMaterial() {
+            return gridManager.dataNodeMaterial;
         }
     }
 }
