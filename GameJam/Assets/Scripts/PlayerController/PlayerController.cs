@@ -19,6 +19,7 @@ namespace PlayerController {
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
 		private static readonly int Dig = Animator.StringToHash("dig");
+		private static readonly int Attack = Animator.StringToHash("attack");
 		#endregion
 
 		#region Unity public fonctions
@@ -60,34 +61,50 @@ namespace PlayerController {
 		#region InputCallBack
 
 		public void OnMove(InputAction.CallbackContext context) {
+			if (!IsAnimatorValid()) { return; }
 			
+			float playerMovementMagnitude = playerMovement.magnitude;
+			animator.SetFloat(Move, playerMovementMagnitude);
 			if(context.performed) {
 				playerMovement = context.ReadValue<Vector2>();
-				float playerMovementMagnitude = playerMovement.magnitude;
-				try
-				{
-					animator.SetFloat(Move, playerMovementMagnitude);
-				}
-				catch (Exception e)
-				{
-					Debug.Log("Nom object = " + name);
-					throw;
-				}
-				
-
 			}
 			if(context.canceled) {
 				playerMovement = Vector3.zero;
-				animator.SetFloat(Move, 0f);
 			}
 		}
 
+
+
 		public void OnDig(InputAction.CallbackContext context) {
+			// In case the animator reference gets lost during assignation
+			if (!IsAnimatorValid()) { return; }
+			
 			if(context.performed) {
-				
+				animator.SetTrigger(Dig);
 			}
 		}
+
+		public void OnAttack(InputAction.CallbackContext context)
+		{	
+			if (!IsAnimatorValid()) { return; }
+			
+			if (context.performed) {
+				animator.SetTrigger(Attack);
+			}
+		}
+
+		#endregion
+
+		#region Utility
+		/// <summary>
+		/// In case the animator reference gets lost during assignation
+		/// </summary>
+		/// <returns>Animator status</returns>
+		private bool IsAnimatorValid() {
+			return animator != null && animator.isActiveAndEnabled;
+		}
 		
+
 		#endregion
 	}
 }
