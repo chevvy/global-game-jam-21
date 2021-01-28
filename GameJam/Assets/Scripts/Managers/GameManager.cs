@@ -8,33 +8,43 @@ namespace Managers
     public class GameManager : MonoBehaviour
     {
         private static GameManager _gameManager;
-        public static GameManager GameManagerInstance { get { return _gameManager; } }
+        public static GameManager Instance { get { return _gameManager; } }
 
         public CinemachineTargetGroup targetGroup;
-        private CinemachineTargetGroup.Target[] targets;
+        private CinemachineTargetGroup.Target[] _targets;
 
-        public string CENTER_OF_MAP = "MapCenter";
+        public string centerOfMapObjectName = "MapCenter";
         public float defaultPlayerWeightToAdjustCamera = 5f;
         
-        private void Awake()
-        {
+        #region Managers
+
+        public GridManager gridManager;
+
+        #endregion
+
+        private void Awake() {
+            SetsSingleton();
+
+            _targets = targetGroup.m_Targets;
+        }
+
+        private void SetsSingleton() {
             if (_gameManager != null && _gameManager != this) {
                 Destroy(this.gameObject);
-            } else {
+            }
+            else {
                 _gameManager = this;
             }
-
-            targets = targetGroup.m_Targets;
         }
 
         public void AddCameraTarget(PlayerController.PlayerController player)
         {
             // TODO Extract in its own function if more logic is added here
-            for (var i = 0; i < targets.Length; i++)
+            for (var i = 0; i < _targets.Length; i++)
             {
-                if (targets[i].target.name != CENTER_OF_MAP) continue;
-                targets[i].target = player.transform;
-                targets[i].weight = defaultPlayerWeightToAdjustCamera;
+                if (_targets[i].target.name != centerOfMapObjectName) continue;
+                _targets[i].target = player.transform;
+                _targets[i].weight = defaultPlayerWeightToAdjustCamera;
                 return;
             }
         }

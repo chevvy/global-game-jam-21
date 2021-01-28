@@ -26,7 +26,7 @@ namespace PlayerController {
 
 		#region Unity public fonctions
 		void Start() {
-			_gameManager = GameManager.GameManagerInstance;
+			_gameManager = GameManager.Instance;
 			_gameManager.AddCameraTarget(this);
 		}
 
