@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -15,7 +16,8 @@ namespace PlayerController {
 
 		private float turnSmoothVelocity;
 
-		#region Animator
+		private GameManager _gameManager;
+		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
 		private static readonly int Dig = Animator.StringToHash("dig");
@@ -24,12 +26,8 @@ namespace PlayerController {
 
 		#region Unity public fonctions
 		void Start() {
-			// playerRigidBody = GetComponent<Rigidbody>();
-			// animator = GetComponent<Animator>();
-		}
-
-		void Update() {
-			
+			_gameManager = GameManager.GameManagerInstance;
+			_gameManager.AddCameraTarget(this);
 		}
 
 		void FixedUpdate () {
@@ -59,7 +57,6 @@ namespace PlayerController {
 		}
 
 		#region InputCallBack
-
 		public void OnMove(InputAction.CallbackContext context) {
 			if (!IsAnimatorValid()) { return; }
 			

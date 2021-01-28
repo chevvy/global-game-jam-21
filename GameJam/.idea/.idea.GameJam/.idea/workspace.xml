@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c9812cd-d4d8-4c14-8182-b3a769012009" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character/Player_Animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Character/Player_Animator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InputManager.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputManager.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" afterDir="false" />
     </list>
@@ -28,9 +28,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.3/Runtime/Behaviours/CinemachineTargetGroup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -43,6 +45,7 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerControllerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nd9E078v99xIbXyaD6Lo3KaJlI" />
@@ -107,7 +110,7 @@
       <updated>1611708988339</updated>
       <workItem from="1611709014212" duration="4464000" />
       <workItem from="1611756916437" duration="4275000" />
-      <workItem from="1611845723323" duration="7899000" />
+      <workItem from="1611845723323" duration="10327000" />
     </task>
     <servers />
   </component>
