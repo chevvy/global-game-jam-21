@@ -225,7 +225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207338683}
-  m_LocalRotation: {x: 0.39238334, y: -0, z: -0, w: 0.91980183}
+  m_LocalRotation: {x: 0.39238337, y: -5.3924828e-24, z: 6.515565e-24, w: 0.9198018}
   m_LocalPosition: {x: -7.1122036, y: 8.080015, z: -4.2569847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -461,7 +461,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 71
+  field of view: 60.2
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -486,7 +486,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953778437}
-  m_LocalRotation: {x: 0.39238334, y: -0, z: -0, w: 0.91980183}
+  m_LocalRotation: {x: 0.39238337, y: -5.3924828e-24, z: 6.515565e-24, w: 0.9198018}
   m_LocalPosition: {x: -7.1122036, y: 8.080015, z: -4.2569847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -864,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 1664828095}
-  CENTER_OF_MAP: MapCenter
+  centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   gridManager: {fileID: 1653694310}
 --- !u!4 &1653694309
@@ -894,8 +894,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataNodeMaterial: {fileID: 2100000, guid: e9bba63965a90364fa907efd3c70cd90, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: fb8aa29c0f7484644bed137a05b554fd, type: 2}
+  tilePrefab: {fileID: 6444297466505872278, guid: 985be3d04789e5945822f27f66b765c4, type: 3}
   floor: {fileID: 431514255}
   numberOfDataNode: 20
+  dataNodeHeightAtSpawn: 40
+  dataNodeMass: 50
 --- !u!1 &1664828093
 GameObject:
   m_ObjectHideFlags: 0
