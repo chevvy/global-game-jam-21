@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Cinemachine;
 using NUnit.Framework;
+using PlayerController;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Managers
 {
@@ -15,16 +18,19 @@ namespace Managers
 
         public string centerOfMapObjectName = "MapCenter";
         public float defaultPlayerWeightToAdjustCamera = 5f;
-        
+
+        public Dictionary<int, int> scoreboard;
+
         #region Managers
 
         public GridManager gridManager;
+        public PlayerControllerManager playerControllerManager;
 
         #endregion
 
         private void Awake() {
             SetsSingleton();
-
+            scoreboard = new Dictionary<int, int>();
             _targets = targetGroup.m_Targets;
         }
 
@@ -47,6 +53,19 @@ namespace Managers
                 _targets[i].weight = defaultPlayerWeightToAdjustCamera;
                 return;
             }
+        }
+
+        public void AddPlayerToScoreboard(int playerID) {
+            scoreboard.Add(playerID, 0);
+        }
+
+        public void RemovePlayerFromScoreboard(int playerID) {
+            scoreboard.Remove(playerID);
+        }
+
+        public void AddPointToPlayer(int playerID) {
+            scoreboard[playerID]++;
+            Debug.Log("Player " + playerID + " , current score = " + scoreboard[playerID]);
         }
     }
 }

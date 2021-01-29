@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Managers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Random = System.Random;
 

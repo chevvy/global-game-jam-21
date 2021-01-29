@@ -654,6 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221004311}
   - component: {fileID: 1221004312}
+  - component: {fileID: 1221004313}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -694,13 +695,14 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1653694308}
+        m_TargetAssemblyTypeName: Managers.GameManager, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -708,7 +710,20 @@ MonoBehaviour:
         m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1653694308}
+        m_TargetAssemblyTypeName: Managers.GameManager, Assembly-CSharp
+        m_MethodName: OnPlayerRemoved
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_JoinAction:
     m_UseReference: 0
     m_Action:
@@ -730,6 +745,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1221004313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221004310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7deb9bdd5610d745892f165b4e5b50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1341498329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,6 +914,7 @@ MonoBehaviour:
   centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   gridManager: {fileID: 1653694310}
+  playerControllerManager: {fileID: 138314939}
 --- !u!4 &1653694309
 Transform:
   m_ObjectHideFlags: 0
@@ -919,6 +947,8 @@ MonoBehaviour:
   floor: {fileID: 431514255}
   floorSystemManager: {fileID: 1870427944}
   LootableDataNodePrefab: {fileID: 4398321146614624919, guid: e3c5883584a5ff0409c6805263a6362b, type: 3}
+  LootableNodePositionRadius: 2
+  LootableDataNodeHeight: 1
   numberOfDataNode: 20
   dataNodeHeightAtSpawn: 40
   dataNodeMass: 50
