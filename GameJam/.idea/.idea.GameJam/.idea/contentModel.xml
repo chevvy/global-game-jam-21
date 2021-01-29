@@ -9,7 +9,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="DataNode" t="Include">
-            <e p="DataNode.cs" t="Include" />
+            <e p="Node.cs" t="Include" />
             <e p="NodeDetector.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">

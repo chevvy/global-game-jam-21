@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace DataNode {
-    public class DataNode : MonoBehaviour {
+    public class Node : MonoBehaviour {
         public bool IsDataNode { set; get; }
         public int NodeID { get; set; }
         public float dataNodeMass = 5f;
@@ -66,7 +66,7 @@ namespace DataNode {
         }
         
         private void SetNodeSpecificOptions(int nodeID, GridManager gridManagerInstance, GameObject newNode) {
-            var dataNode = newNode.AddComponent<DataNode>();
+            var dataNode = newNode.AddComponent<Node>();
             dataNode.nodeMaterial = nodeMaterial;
             dataNode._isCheckingForFloor = true;
             dataNode.NodeID = nodeID;

@@ -17,7 +17,7 @@ namespace Managers
         // -> dataNodes = The ore that the player must mine!
         // -> floorHolder = placed below the tiles, it will be used to handle respawn / collapsing node
         public GameObject floor;
-        private List<DataNode.DataNode> _floorNodes;
+        private List<DataNode.Node> _floorNodes;
         public FloorSystemManager floorSystemManager;
         
         public int numberOfDataNode = 20; // Number of dataNodes that can be mined by players
@@ -55,12 +55,12 @@ namespace Managers
         }
         
         private void InitializeFloorStructure() {
-            _floorNodes = new List<DataNode.DataNode>();
+            _floorNodes = new List<DataNode.Node>();
             _indexesOfDataNode = new HashSet<int>();
             int tileIndex = 0;
             foreach (Transform child in floor.transform) {
                 GameObject childGameObject = child.gameObject;
-                DataNode.DataNode node = childGameObject.AddComponent<DataNode.DataNode>();
+                DataNode.Node node = childGameObject.AddComponent<DataNode.Node>();
 
                 SetupNewNode(node, tileIndex);
                 _floorNodes.Add(node);
@@ -69,7 +69,7 @@ namespace Managers
             }
         }
 
-        private void SetupNewNode(DataNode.DataNode node, int tileIndex) {
+        private void SetupNewNode(DataNode.Node node, int tileIndex) {
             node.IsDataNode = false;
             node.NodeID = tileIndex;
             node.dataNodeMaterial = dataNodeMaterial;
@@ -92,12 +92,12 @@ namespace Managers
         /// <param name="indexes">HashSet of indexes to spawn new DataNode</param>
         public void SpawnDataNodes(HashSet<int> indexes) {
             foreach (int index in indexes) {
-                DataNode.DataNode currentNode = _floorNodes[index].GetComponent<DataNode.DataNode>();
+                DataNode.Node currentNode = _floorNodes[index].GetComponent<DataNode.Node>();
                 currentNode.SpawnDataNode(index, this);
             }
         }
 
-        public void ReplaceNodeInNodesList(DataNode.DataNode node, int nodeID) {
+        public void ReplaceNodeInNodesList(DataNode.Node node, int nodeID) {
             // Memory protection 
             if (_floorNodes[nodeID] != null) {
                 Destroy(node.gameObject);

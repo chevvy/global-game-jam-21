@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NodeDetector : MonoBehaviour {
-    public DataNode.DataNode parentDatanode;
+    public DataNode.Node parentDatanode;
 
     private void Awake() {
-        parentDatanode = GetComponentInParent<DataNode.DataNode>();
+        parentDatanode = GetComponentInParent<DataNode.Node>();
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("DataNode")) {
-            parentDatanode = GetComponentInParent<DataNode.DataNode>();
+            parentDatanode = GetComponentInParent<DataNode.Node>();
             parentDatanode.DestroyNode();
         }
     }

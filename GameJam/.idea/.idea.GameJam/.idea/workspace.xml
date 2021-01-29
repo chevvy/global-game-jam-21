@@ -7,16 +7,12 @@
     <list default="true" id="6c9812cd-d4d8-4c14-8182-b3a769012009" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FloorSystemManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FloorSystemManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FloorSystemManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FloorSystemManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NodeDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/NodeDetector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NodeDetector.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/NodeDetector.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataNode/NodeDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/NodeDetector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GridManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShovelHit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShovelHit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShovelHit.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShovelHit.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShovelHit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShovelHit.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,17 +39,18 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.3/Runtime/Behaviours/CinemachineTargetGroup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerControllerManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/NodeDetector.cs" />
       <option value="$PROJECT_DIR$/Assets/ShovelHit.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GridManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nd9E078v99xIbXyaD6Lo3KaJlI" />
@@ -122,7 +119,7 @@
       <workItem from="1611756916437" duration="4275000" />
       <workItem from="1611845723323" duration="23976000" />
       <workItem from="1611893796585" duration="1174000" />
-      <workItem from="1611926105121" duration="7416000" />
+      <workItem from="1611926105121" duration="8040000" />
     </task>
     <servers />
   </component>
