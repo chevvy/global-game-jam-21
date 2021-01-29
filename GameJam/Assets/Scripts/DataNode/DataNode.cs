@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DataNode {
     public class DataNode : MonoBehaviour {
@@ -9,46 +10,36 @@ namespace DataNode {
         public int NodeID { get; set; }
         public float dataNodeMass = 5f;
         public Material dataNodeMaterial;
-        public Material defaultNodeMaterial;
+        [FormerlySerializedAs("defaultNodeMaterial")] public Material nodeMaterial;
         public GameObject nodePrefab;
 
         public GridManager gridManager;
-
-        public float targetYPosition;
+        
         private bool _isCheckingForFloor;
 
-        private void Update() {
+        private void OnCollisionEnter(Collision other) {
             if (!_isCheckingForFloor) return;
-            // Debug.Log(_initialYPosition - transform.position.y);
-            // if (transform.position.y - 0.2f <= targetYPosition) {
-            //     GetComponent<Rigidbody>().isKinematic = true;
-            //     Destroy(GetComponent<Rigidbody>());
-            //     _isCheckingForFloor = false;
-            // }
+            if (other.gameObject.CompareTag("FloorHolder")) {
+                StartCoroutine(WaitForNodeToStabilize());
+            }
+        }
+        /// <summary>
+        /// Waits 1 seconds before setting to kinematic the rigidbody to allow it to stabilize
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator WaitForNodeToStabilize() {
+            yield return new WaitForSeconds(1);
+            GetComponent<Rigidbody>().isKinematic = true;
+            _isCheckingForFloor = false;
         }
 
-        public void SpawnDataNode(int nodeID, GridManager gridManager) {
+        public void SpawnDataNode(int nodeID, GridManager gridManagerInstance) {
             var newNode = InstantiateNewNode();
             SetNodeRigidBodyProperties(newNode);
             SetNodeVisuals(newNode);
-            var dataNode = newNode.AddComponent<DataNode>();
-            dataNode.defaultNodeMaterial = defaultNodeMaterial;
-            dataNode.StartCheckingForFloor(transform.position.y);
-            dataNode.NodeID = nodeID;
-            dataNode.gridManager = gridManager;
+            SetNodeSpecificOptions(nodeID, gridManagerInstance, newNode);
         }
         
-        
-
-        public void StartCheckingForFloor(float targetYposition) {
-            targetYPosition = targetYposition;
-            StartCoroutine(TimerBeforeCheckingForFloor());
-            IEnumerator TimerBeforeCheckingForFloor() {
-                yield return new WaitForSeconds(2);
-                _isCheckingForFloor = true;
-            }
-        }
-
         private GameObject InstantiateNewNode() {
             var position = transform.position;
             Vector3 spawnPosition = new Vector3(position.x,
@@ -58,7 +49,7 @@ namespace DataNode {
             newNode.tag = "DataNode";
             return newNode;
         }
-
+        
         private void SetNodeRigidBodyProperties(GameObject node) {
             node.AddComponent<Rigidbody>();
             Rigidbody nodeRigidbody = node.GetComponent<Rigidbody>();
@@ -74,6 +65,14 @@ namespace DataNode {
             node.GetComponent<MeshRenderer>().material = dataNodeMaterial;
         }
         
+        private void SetNodeSpecificOptions(int nodeID, GridManager gridManagerInstance, GameObject newNode) {
+            var dataNode = newNode.AddComponent<DataNode>();
+            dataNode.nodeMaterial = nodeMaterial;
+            dataNode._isCheckingForFloor = true;
+            dataNode.NodeID = nodeID;
+            dataNode.gridManager = gridManagerInstance;
+        }
+
         /// <summary>
         /// Change the status of the nodes and sends info to the game manager
         /// </summary>
@@ -87,14 +86,14 @@ namespace DataNode {
         /// <summary>
         /// Reset to a normal node
         /// </summary>
-        public void ResetNodeStatus() {
+        private void ResetNodeStatus() {
             if(TryGetComponent(out Rigidbody nodeRigidbody)) {
                 Destroy(nodeRigidbody);
             }
 
             IsDataNode = false;
             gridManager.ReplaceNodeInNodesList(this, NodeID);
-            GetComponent<MeshRenderer>().material = defaultNodeMaterial;
+            GetComponent<MeshRenderer>().material = nodeMaterial;
         }
         
         public void DestroyNode() {

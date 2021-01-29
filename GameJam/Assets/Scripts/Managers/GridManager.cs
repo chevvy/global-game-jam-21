@@ -73,7 +73,7 @@ namespace Managers
             node.IsDataNode = false;
             node.NodeID = tileIndex;
             node.dataNodeMaterial = dataNodeMaterial;
-            node.defaultNodeMaterial = nodeMaterial;
+            node.nodeMaterial = nodeMaterial;
             node.nodePrefab = nodePrefab;
             node.gridManager = this;
             node.dataNodeMass = dataNodeMass;

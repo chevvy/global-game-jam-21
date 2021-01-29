@@ -481,7 +481,7 @@ Camera:
   far clip plane: 1000
   field of view: 71
   orthographic: 1
-  orthographic size: 9.83
+  orthographic size: 1084.89
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 1870427944}
   m_Layer: 0
   m_Name: Respawner-FloorHolder
-  m_TagString: Untagged
+  m_TagString: FloorHolder
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

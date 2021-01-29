@@ -8,6 +8,7 @@ TagManager:
   - DataNode
   - Shovel
   - DataOre
+  - FloorHolder
   layers:
   - Default
   - TransparentFX
