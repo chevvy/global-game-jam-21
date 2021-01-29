@@ -124,6 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278172900653862834}
+  - component: {fileID: 4011567771345485987}
   m_Layer: 0
   m_Name: Jtn_Shovel
   m_TagString: Untagged
@@ -145,7 +146,20 @@ Transform:
   - {fileID: 3053537186480947950}
   m_Father: {fileID: 178728423561668767}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -17.743977, y: 179.81197, z: -89.66389}
+  m_LocalEulerAnglesHint: {x: -0.66918564, y: -174.17235, z: 6.2471404}
+--- !u!65 &4011567771345485987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543691511849317935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 131.9917, y: 26.459108, z: 81.730194}
+  m_Center: {x: -65.496666, y: 5.126118, z: 2.0848958}
 --- !u!1 &794651400294640789
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +251,7 @@ Transform:
   - {fileID: 7363536282548945867}
   m_Father: {fileID: 178728423561668767}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 52.25667, y: -0.7591624, z: 178.58765}
+  m_LocalEulerAnglesHint: {x: 25.494, y: 2.776, z: -137.09}
 --- !u!1 &1449000312621894305
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +313,7 @@ Transform:
   - {fileID: 6632334428407184670}
   m_Father: {fileID: 178728423561668767}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 52.25667, y: -0.7591624, z: 178.58765}
+  m_LocalEulerAnglesHint: {x: -32.847, y: 12.179, z: 217.669}
 --- !u!1 &3252191648389029284
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +444,7 @@ Transform:
   - {fileID: 1278172900653862834}
   m_Father: {fileID: 8823411412665256538}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.0000017075615, y: -37.739433, z: -89.41236}
+  m_LocalEulerAnglesHint: {x: -5.8658137, y: -90, z: -83.43792}
 --- !u!1 &3403069386341247929
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Sweat
       objectReference: {fileID: 0}
+    - target: {fileID: 2348926249919094624, guid: a3c14ee66ade14c47913ea1efaf544b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3374794217436310072, guid: a3c14ee66ade14c47913ea1efaf544b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -798,6 +816,10 @@ PrefabInstance:
     - target: {fileID: 3374794217436310072, guid: a3c14ee66ade14c47913ea1efaf544b0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3990211255211491906, guid: a3c14ee66ade14c47913ea1efaf544b0, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7992110805159230643, guid: a3c14ee66ade14c47913ea1efaf544b0, type: 3}
       propertyPath: m_RootOrder
