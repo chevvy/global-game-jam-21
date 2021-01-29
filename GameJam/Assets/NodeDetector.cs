@@ -15,6 +15,5 @@ public class NodeDetector : MonoBehaviour {
             parentDatanode = GetComponentInParent<DataNode.DataNode>();
             parentDatanode.DestroyNode();
         }
-        
     }
 }

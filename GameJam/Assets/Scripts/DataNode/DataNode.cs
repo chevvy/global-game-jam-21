@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Managers;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace DataNode {
@@ -10,6 +9,7 @@ namespace DataNode {
         public int NodeID { get; set; }
         public float dataNodeMass = 5f;
         public Material dataNodeMaterial;
+        public Material defaultNodeMaterial;
         public GameObject nodePrefab;
 
         public GridManager gridManager;
@@ -20,19 +20,22 @@ namespace DataNode {
         private void Update() {
             if (!_isCheckingForFloor) return;
             // Debug.Log(_initialYPosition - transform.position.y);
-            if (transform.position.y - 0.2f <= targetYPosition) {
-                GetComponent<Rigidbody>().isKinematic = true;
-                Destroy(GetComponent<Rigidbody>());
-                _isCheckingForFloor = false;
-            }
+            // if (transform.position.y - 0.2f <= targetYPosition) {
+            //     GetComponent<Rigidbody>().isKinematic = true;
+            //     Destroy(GetComponent<Rigidbody>());
+            //     _isCheckingForFloor = false;
+            // }
         }
 
-        public void SpawnDataNode() {
+        public void SpawnDataNode(int nodeID, GridManager gridManager) {
             var newNode = InstantiateNewNode();
             SetNodeRigidBodyProperties(newNode);
             SetNodeVisuals(newNode);
             var dataNode = newNode.AddComponent<DataNode>();
+            dataNode.defaultNodeMaterial = defaultNodeMaterial;
             dataNode.StartCheckingForFloor(transform.position.y);
+            dataNode.NodeID = nodeID;
+            dataNode.gridManager = gridManager;
         }
         
         
@@ -70,7 +73,30 @@ namespace DataNode {
         private void SetNodeVisuals(GameObject node) {
             node.GetComponent<MeshRenderer>().material = dataNodeMaterial;
         }
+        
+        /// <summary>
+        /// Change the status of the nodes and sends info to the game manager
+        /// </summary>
+        /// <param name="playerID">the player ID</param>
+        public void DigDataNode(int playerID = 0) {
+            // Breaks node 
+            // spawn random ore ? 
+            ResetNodeStatus();
+        }
 
+        /// <summary>
+        /// Reset to a normal node
+        /// </summary>
+        public void ResetNodeStatus() {
+            if(TryGetComponent(out Rigidbody nodeRigidbody)) {
+                Destroy(nodeRigidbody);
+            }
+
+            IsDataNode = false;
+            gridManager.SetNodeInTileList(this, NodeID);
+            GetComponent<MeshRenderer>().material = defaultNodeMaterial;
+        }
+        
         public void DestroyNode() {
             Destroy(gameObject);
         }
