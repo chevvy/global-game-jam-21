@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerControllerTest.unity
     guid: 4410c53e91a5b4ccf99fc200658fb2b4
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d4ea1a82d310db948adf1f6770edc53d, type: 2}
