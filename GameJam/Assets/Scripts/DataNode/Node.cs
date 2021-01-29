@@ -3,6 +3,7 @@ using System.Collections;
 using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 namespace DataNode {
     public class Node : MonoBehaviour {
@@ -12,6 +13,9 @@ namespace DataNode {
         public Material dataNodeMaterial;
         [FormerlySerializedAs("defaultNodeMaterial")] public Material nodeMaterial;
         public GameObject nodePrefab;
+        public GameObject lootableDataNodePrefab;
+        public float LootableDataNodeRadius;
+        public float LootableDataNodeHeight;
 
         public GridManager gridManager;
         
@@ -39,7 +43,7 @@ namespace DataNode {
             SetNodeVisuals(newNode);
             SetNodeSpecificOptions(nodeID, gridManagerInstance, newNode);
         }
-        
+
         private GameObject InstantiateNewNode() {
             var position = transform.position;
             Vector3 spawnPosition = new Vector3(position.x,
@@ -71,6 +75,9 @@ namespace DataNode {
             dataNode._isCheckingForFloor = true;
             dataNode.NodeID = nodeID;
             dataNode.gridManager = gridManagerInstance;
+            dataNode.lootableDataNodePrefab = lootableDataNodePrefab;
+            dataNode.LootableDataNodeHeight = LootableDataNodeHeight;
+            dataNode.LootableDataNodeRadius = LootableDataNodeRadius;
         }
 
         /// <summary>
@@ -81,6 +88,27 @@ namespace DataNode {
             // Breaks node 
             // spawn random ore ? 
             ResetNodeStatus();
+            SpawnLootableDataNode();
+        }
+        
+        private void SpawnLootableDataNode() {
+            Random random = new Random();
+            Random randomAngle = new Random();
+            int numberOfNewDataNode = random.Next(0, 5);
+            for (int i = 0; i < numberOfNewDataNode; i++) {
+                Vector3 newPosition = GetRandomPositionAroundNode(randomAngle);
+                Instantiate(lootableDataNodePrefab, newPosition, Quaternion.identity);    
+            }
+        }
+
+        private Vector3 GetRandomPositionAroundNode(Random randomGenerator) {
+            float radius = LootableDataNodeRadius;
+            float angle = randomGenerator.Next(0, 360);
+            Vector3 newPosition;
+            newPosition.x = transform.position.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
+            newPosition.y = transform.position.y + LootableDataNodeHeight;
+            newPosition.z = transform.position.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
+            return newPosition;
         }
 
         /// <summary>

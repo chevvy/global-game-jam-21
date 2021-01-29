@@ -226,7 +226,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207338683}
-  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.07312703, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
   m_LocalPosition: {x: 6.0677967, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -481,7 +481,7 @@ Camera:
   far clip plane: 1000
   field of view: 71
   orthographic: 1
-  orthographic size: 1084.89
+  orthographic size: 9.83
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -504,7 +504,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953778437}
-  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.07312703, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
   m_LocalPosition: {x: 6.0677967, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -918,6 +918,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6444297466505872278, guid: 985be3d04789e5945822f27f66b765c4, type: 3}
   floor: {fileID: 431514255}
   floorSystemManager: {fileID: 1870427944}
+  LootableDataNodePrefab: {fileID: 4398321146614624919, guid: e3c5883584a5ff0409c6805263a6362b, type: 3}
   numberOfDataNode: 20
   dataNodeHeightAtSpawn: 40
   dataNodeMass: 50
