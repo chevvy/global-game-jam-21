@@ -93,7 +93,7 @@ namespace DataNode {
             }
 
             IsDataNode = false;
-            gridManager.SetNodeInTileList(this, NodeID);
+            gridManager.ReplaceNodeInNodesList(this, NodeID);
             GetComponent<MeshRenderer>().material = defaultNodeMaterial;
         }
         

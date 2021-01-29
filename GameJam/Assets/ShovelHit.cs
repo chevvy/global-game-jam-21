@@ -11,7 +11,6 @@ public class ShovelHit : MonoBehaviour {
         Collider[] hitColliders = Physics.OverlapSphere(adjustedPosition, detectorRadius);
         foreach (var hitCollider in hitColliders) {
             if (!hitCollider.CompareTag("DataNode")) { continue; }
-            Debug.Log("Dig datanode");
             hitCollider.GetComponent<DataNode.DataNode>().DigDataNode();
         }
     }

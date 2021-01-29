@@ -9,26 +9,27 @@ namespace Managers
     public class GridManager : MonoBehaviour
     {
         public Material dataNodeMaterial;
-        public Material defaultMaterial;
-        public GameObject tilePrefab;
+        [FormerlySerializedAs("defaultMaterial")] public Material nodeMaterial;
+        [FormerlySerializedAs("tilePrefab")] public GameObject nodePrefab;
         
+        // The floor contains:
+        // -> the nodes (aka : floor tiles), theses nodes can be converted to dataNodes
+        // -> dataNodes = The ore that the player must mine!
+        // -> floorHolder = placed below the tiles, it will be used to handle respawn / collapsing node
         public GameObject floor;
-        private List<DataNode.DataNode> _tiles;
-
-        public int numberOfDataNode = 20;
-        private HashSet<int> _indexesOfDataNode;
+        private List<DataNode.DataNode> _floorNodes;
+        public FloorSystemManager floorSystemManager;
+        
+        public int numberOfDataNode = 20; // Number of dataNodes that can be mined by players
+        private HashSet<int> _indexesOfDataNode; // All the floor node indexes that are dataNode
         public int dataNodeHeightAtSpawn = 10;
         public float dataNodeMass = 30f;
-
-        private void OnCollisionEnter(Collision other) {
-            Debug.Log(other.transform.name);
-        }
 
         void Awake() {
             CheckForMissingComponents();
             InitializeFloorStructure();
             GenerateRandomDataNodes(numberOfDataNode);
-            SpawnDataNode(_indexesOfDataNode);
+            SpawnDataNodes(_indexesOfDataNode);
         }
         
         private void CheckForMissingComponents() {
@@ -36,7 +37,7 @@ namespace Managers
                 Debug.LogError("Missing ore material on Gridmanager");
             }
 
-            if (defaultMaterial == null) {
+            if (nodeMaterial == null) {
                 Debug.LogError("Missing default material on GridManager");
             }
 
@@ -44,57 +45,64 @@ namespace Managers
                 Debug.LogError("Missing floor assignment on Gridmanager");
             }
 
-            if (tilePrefab == null) {
-                Debug.LogError("Missing tile prefab");
+            if (nodePrefab == null) {
+                Debug.LogError("Missing tile prefab on GridManager");
+            }
+
+            if (floorSystemManager == null) {
+                Debug.Log("Missing Floor system manager on GridManager");
             }
         }
         
         private void InitializeFloorStructure() {
-            _tiles = new List<DataNode.DataNode>();
+            _floorNodes = new List<DataNode.DataNode>();
             _indexesOfDataNode = new HashSet<int>();
             int tileIndex = 0;
             foreach (Transform child in floor.transform) {
                 GameObject childGameObject = child.gameObject;
                 DataNode.DataNode node = childGameObject.AddComponent<DataNode.DataNode>();
 
-                node.IsDataNode = false;
-                node.NodeID = tileIndex;
-                node.dataNodeMaterial = dataNodeMaterial;
-                node.defaultNodeMaterial = defaultMaterial;
-                node.nodePrefab = tilePrefab;
-                node.gridManager = this;
-                node.dataNodeMass = dataNodeMass;
-
-                _tiles.Add(node);
+                SetupNewNode(node, tileIndex);
+                _floorNodes.Add(node);
 
                 tileIndex++;
             }
         }
 
+        private void SetupNewNode(DataNode.DataNode node, int tileIndex) {
+            node.IsDataNode = false;
+            node.NodeID = tileIndex;
+            node.dataNodeMaterial = dataNodeMaterial;
+            node.defaultNodeMaterial = nodeMaterial;
+            node.nodePrefab = nodePrefab;
+            node.gridManager = this;
+            node.dataNodeMass = dataNodeMass;
+        }
+
         private void GenerateRandomDataNodes(int numberOfNodes) {
-            Random randomDataNodeBlocks = new Random();
+            Random random = new Random();
             for (int i = 0; i < numberOfNodes; i++) {
-                int tileNumber = randomDataNodeBlocks.Next(0, _tiles.Count);
-                _indexesOfDataNode.Add(tileNumber);
+                int dataNodeIndex = random.Next(0, _floorNodes.Count);
+                _indexesOfDataNode.Add(dataNodeIndex);
             }
         }
-        
-        public void SpawnDataNode(HashSet<int> indexes) {
+        /// <summary>
+        /// Spawns all data nodes received in param
+        /// </summary>
+        /// <param name="indexes">HashSet of indexes to spawn new DataNode</param>
+        public void SpawnDataNodes(HashSet<int> indexes) {
             foreach (int index in indexes) {
-                DataNode.DataNode currentNode = _tiles[index].GetComponent<DataNode.DataNode>();
+                DataNode.DataNode currentNode = _floorNodes[index].GetComponent<DataNode.DataNode>();
                 currentNode.SpawnDataNode(index, this);
             }
         }
 
-        public void SetNodeInTileList(DataNode.DataNode node, int nodeID) {
+        public void ReplaceNodeInNodesList(DataNode.DataNode node, int nodeID) {
             // Memory protection 
-            if (_tiles[nodeID] != null) {
+            if (_floorNodes[nodeID] != null) {
                 Destroy(node.gameObject);
             }
-            _tiles[nodeID] = node;
+            _floorNodes[nodeID] = node;
         }
-        // pour le dig 
-        // un checksphere at the edge de la pelle -> trigger par event de l'anim
-        // 
     }
 }
