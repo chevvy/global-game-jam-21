@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\vince\AppData\local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\vince\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_GameJam.2109708616.00" t="ExcludeRecursive" />
-    <e p="C:\Users\vince\Code\global-game-jam-21\GameJam" t="IncludeRecursive">
+    <e p="C:\Users\vince\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_GameJam.2056740320.00" t="ExcludeRecursive" />
+    <e p="C:\Users\vince\Code\212\GameJam" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="NodeDetector.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="DataNode" t="Include">
-            <e p="DataNode.cs" t="Include" />
+            <e p="Node.cs" t="Include" />
+            <e p="NodeDetector.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">
+            <e p="FloorSystemManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="GridManager.cs" t="Include" />
           </e>
@@ -20,6 +21,7 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerControllerManager.cs" t="Include" />
           </e>
+          <e p="ShovelHit.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
         </e>
         <e p="TutorialInfo" t="Include">

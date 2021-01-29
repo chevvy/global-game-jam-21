@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Tile
   - DataNode
+  - Shovel
+  - DataOre
+  - FloorHolder
   layers:
   - Default
   - TransparentFX

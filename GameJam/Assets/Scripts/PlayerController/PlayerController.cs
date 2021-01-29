@@ -56,17 +56,21 @@ namespace PlayerController {
 			}
 		}
 
-		#region InputCallBack
+		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
 			if (!IsAnimatorValid()) { return; }
 			
 			float playerMovementMagnitude = playerMovement.magnitude;
+			playerMovementMagnitude = playerMovementMagnitude < 0 ? -playerMovementMagnitude
+				: playerMovementMagnitude;
 			animator.SetFloat(Move, playerMovementMagnitude);
+			
 			if(context.performed) {
 				playerMovement = context.ReadValue<Vector2>();
 			}
 			if(context.canceled) {
 				playerMovement = Vector3.zero;
+				animator.SetFloat(Move, 0f);
 			}
 		}
 

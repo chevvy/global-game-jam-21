@@ -226,7 +226,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207338683}
-  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.07312703, w: 0.92168117}
   m_LocalPosition: {x: 6.0677967, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -481,7 +481,7 @@ Camera:
   far clip plane: 1000
   field of view: 71
   orthographic: 1
-  orthographic size: 9.83
+  orthographic size: 1084.89
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -504,7 +504,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953778437}
-  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.07312703, w: 0.92168117}
   m_LocalPosition: {x: 6.0677967, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -819,6 +819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431514256}
+  - {fileID: 1870427941}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -913,9 +914,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataNodeMaterial: {fileID: 2100000, guid: e9bba63965a90364fa907efd3c70cd90, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: fb8aa29c0f7484644bed137a05b554fd, type: 2}
-  tilePrefab: {fileID: 6444297466505872278, guid: 985be3d04789e5945822f27f66b765c4, type: 3}
+  nodeMaterial: {fileID: 2100000, guid: fb8aa29c0f7484644bed137a05b554fd, type: 2}
+  nodePrefab: {fileID: 6444297466505872278, guid: 985be3d04789e5945822f27f66b765c4, type: 3}
   floor: {fileID: 431514255}
+  floorSystemManager: {fileID: 1870427944}
   numberOfDataNode: 20
   dataNodeHeightAtSpawn: 40
   dataNodeMass: 50
@@ -1113,6 +1115,72 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: f9b2e7f9389c6534bbbab2906c4358a6, type: 2}
+--- !u!1 &1870427940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870427941}
+  - component: {fileID: 1870427943}
+  - component: {fileID: 1870427942}
+  - component: {fileID: 1870427944}
+  m_Layer: 0
+  m_Name: Respawner-FloorHolder
+  m_TagString: FloorHolder
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870427941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870427940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.9, y: 10.557, z: 0}
+  m_LocalScale: {x: 60.621555, y: 1, z: 70.28891}
+  m_Children: []
+  m_Father: {fileID: 1546026338}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1870427942
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870427940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1870427943
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870427940}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1870427944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870427940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb367d41d673a704798a6780bfd4ed04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2118703330
 GameObject:
   m_ObjectHideFlags: 3
