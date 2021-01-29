@@ -19,7 +19,11 @@ namespace Managers
         public GameObject floor;
         private List<DataNode.Node> _floorNodes;
         public FloorSystemManager floorSystemManager;
-        
+
+        public GameObject LootableDataNodePrefab;
+        public float LootableNodePositionRadius = 2f;
+        public float LootableDataNodeHeight = 1f;
+
         public int numberOfDataNode = 20; // Number of dataNodes that can be mined by players
         private HashSet<int> _indexesOfDataNode; // All the floor node indexes that are dataNode
         public int dataNodeHeightAtSpawn = 10;
@@ -52,6 +56,10 @@ namespace Managers
             if (floorSystemManager == null) {
                 Debug.Log("Missing Floor system manager on GridManager");
             }
+
+            if (LootableDataNodePrefab == null) {
+                Debug.Log("Missing LootableDataNodePrefab on GridManager");
+            }
         }
         
         private void InitializeFloorStructure() {
@@ -77,6 +85,9 @@ namespace Managers
             node.nodePrefab = nodePrefab;
             node.gridManager = this;
             node.dataNodeMass = dataNodeMass;
+            node.lootableDataNodePrefab = LootableDataNodePrefab;
+            node.LootableDataNodeHeight = LootableDataNodeHeight;
+            node.LootableDataNodeRadius = LootableNodePositionRadius;
         }
 
         private void GenerateRandomDataNodes(int numberOfNodes) {

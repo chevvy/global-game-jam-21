@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +7,8 @@ using UnityEngine.Serialization;
 
 namespace PlayerController {
 	public class PlayerController : MonoBehaviour {
+		public int playerID;
+		
 		[FormerlySerializedAs("PlayerSpeed")] public float playerSpeed = 2f;
 		public float turnSmoothTime = 0.1f;
 		
@@ -17,6 +20,8 @@ namespace PlayerController {
 		private float turnSmoothVelocity;
 
 		private GameManager _gameManager;
+
+		public GameObject goldBitLootedFX;
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -53,6 +58,18 @@ namespace PlayerController {
 				float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref targetAngle,
 					turnSmoothTime * internalSmoothingTime);
 				transform.rotation = Quaternion.Euler(0f, angle, 0f);
+			}
+		}
+
+		public void AddPoint() {
+			GameManager.Instance.AddPointToPlayer(playerID);
+			goldBitLootedFX.SetActive(false);
+			goldBitLootedFX.SetActive(true);
+
+			StartCoroutine(Timer());
+			IEnumerator Timer() {
+				yield return new WaitForSeconds(0.5f);
+				goldBitLootedFX.SetActive(false);
 			}
 		}
 

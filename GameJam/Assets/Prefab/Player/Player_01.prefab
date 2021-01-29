@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2211893304717437061}
   m_Layer: 0
   m_Name: Player_01
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,9 +253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebfbf87dd05f48d1af2c8970c0e828e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 0
   playerSpeed: 100
   turnSmoothTime: 0.1
   playerRigidBody: {fileID: 7740811618753538229}
+  goldBitLootedFX: {fileID: 8156005804742869514}
   animator: {fileID: 3697170748071931498}
 --- !u!114 &2211893304717437061
 MonoBehaviour:
@@ -924,6 +926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce422b351d69c38499f269f5aecae8fb, type: 3}
+--- !u!1 &8156005804742869514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5662036130863566474, guid: ce422b351d69c38499f269f5aecae8fb, type: 3}
+  m_PrefabInstance: {fileID: 4592655454617062528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5991603012495226650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7825585979154365338, guid: ce422b351d69c38499f269f5aecae8fb, type: 3}
