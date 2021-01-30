@@ -17,15 +17,14 @@ namespace PlayerController {
 		private float internalSmoothingTime = 0.5f; // using this because the value from the input are too low
 		public Rigidbody playerRigidBody;
 		private Vector2 playerMovement;
+		public float playerHeight = 1.5f;
 
 		private float turnSmoothVelocity;
 
 		private GameManager _gameManager;
-
 		public GameObject goldBitLootedFX;
-
 		public CinemachineBrain cameraBrain;
-		
+
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -39,8 +38,6 @@ namespace PlayerController {
 			_gameManager.AddCameraTarget(this);
 			cameraBrain = _gameManager.cameraBrain;
 		}
-		
-		
 
 		void FixedUpdate () {
 			// Debug.DrawRay(cameraBrain.transform.position, direction * 1000, Color.yellow);
@@ -48,6 +45,9 @@ namespace PlayerController {
 			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
 			SetDirection(playerMovement);
+			if(transform.position.y < 1.4f || transform.position.y > 1.6f) {
+				transform.position = new Vector3(transform.position.x, playerHeight, transform.position.z);
+			}
 		}
 		#endregion
 		

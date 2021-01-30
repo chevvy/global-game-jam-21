@@ -257,7 +257,9 @@ MonoBehaviour:
   playerSpeed: 100
   turnSmoothTime: 0.1
   playerRigidBody: {fileID: 7740811618753538229}
+  playerHeight: 1.5
   goldBitLootedFX: {fileID: 8156005804742869514}
+  cameraBrain: {fileID: 0}
   animator: {fileID: 3697170748071931498}
 --- !u!114 &2211893304717437061
 MonoBehaviour:
