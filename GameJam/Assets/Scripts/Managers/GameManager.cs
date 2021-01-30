@@ -105,7 +105,7 @@ namespace Managers
 
         public bool IsGameFinished() {
             foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
-                if((PlayerAndScore.Value == ScoreToWin)) {
+                if((PlayerAndScore.Value >= ScoreToWin)) {
                     return true;
                 }
             }
