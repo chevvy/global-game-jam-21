@@ -438,6 +438,17 @@ Transform:
   m_Father: {fileID: 1149276321}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &848541455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 546692272585700099, guid: 7a5f22564b6f033469efe7be6df435c0, type: 3}
+  m_PrefabInstance: {fileID: 3836956808947182541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938297293
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +494,7 @@ GameObject:
   - component: {fileID: 953778438}
   - component: {fileID: 953778441}
   - component: {fileID: 953778442}
+  - component: {fileID: 953778443}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -621,6 +633,30 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &953778443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953778437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53258ad9ad6e71e48bb8643c9522112e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: -140
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_ShowDebugText: 0
+  m_Loop: 0
+  m_ChildCameras: []
+  m_Instructions: []
 --- !u!114 &1117480254 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 725650284783116653, guid: 7a5f22564b6f033469efe7be6df435c0, type: 3}
@@ -1561,6 +1597,10 @@ PrefabInstance:
       propertyPath: p3Score
       value: 
       objectReference: {fileID: 397811849}
+    - target: {fileID: 7096580480204278764, guid: 7a5f22564b6f033469efe7be6df435c0, type: 3}
+      propertyPath: winnerText
+      value: 
+      objectReference: {fileID: 848541455}
     - target: {fileID: 7130502899489881761, guid: 7a5f22564b6f033469efe7be6df435c0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

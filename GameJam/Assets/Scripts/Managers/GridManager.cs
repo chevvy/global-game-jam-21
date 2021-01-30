@@ -35,10 +35,14 @@ namespace Managers
         void Awake() {
             CheckForMissingComponents();
             InitializeFloorStructure();
-            GenerateRandomDataNodes(numberOfDataNode);
+            GenerateNewBatchOfDataNodes(numberOfDataNode);
+        }
+
+        private void GenerateNewBatchOfDataNodes(int numberOfNodes) {
+            GenerateRandomDataNodes(numberOfNodes);
             SpawnDataNodes(_indexesOfDataNode);
         }
-        
+
         private void CheckForMissingComponents() {
             if (dataNodeMaterial == null) {
                 Debug.LogError("Missing ore material on Gridmanager");

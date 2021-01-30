@@ -22,6 +22,8 @@ namespace Managers
 
         private Dictionary<int, int> _scoreboard;
 
+        public int ScoreToWin = 10;
+
         #region Managers
 
         public GridManager gridManager;
@@ -94,8 +96,29 @@ namespace Managers
 
         public void AddPointToPlayer(int playerID) {
             _scoreboard[playerID]++;
+            if (IsGameFinished()) {
+                FinishGame();
+                return;
+            }
             uiScores.SetPlayerScore(playerID, _scoreboard[playerID]);
-            Debug.Log("Player " + playerID + " , current score = " + _scoreboard[playerID]);
+        }
+
+        private bool IsGameFinished() {
+            foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
+                if((PlayerAndScore.Value == ScoreToWin)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void FinishGame() {
+            foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
+                if((PlayerAndScore.Value >= ScoreToWin)) {
+                    uiScores.OnEndGame(PlayerAndScore.Key);
+                }
+            }
         }
     }
 }
