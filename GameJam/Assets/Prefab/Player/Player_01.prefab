@@ -236,6 +236,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 77415420-209a-42c2-9cc4-cfbab10dd87d
     m_ActionName: Player/Dig[/XInputControllerWindows/buttonWest,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1614f16c-990e-49d5-aa63-8f725a7b0138
+    m_ActionName: Player/Start[/XInputControllerWindows/start,/Keyboard/enter,/Keyboard/numpadEnter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -555,7 +559,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8417932563333911507, guid: b7cae1779df514348b11c50589173119, type: 3}
   - {fileID: 2100000, guid: 02c14164d934a7442b82a5f114c55d81, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
