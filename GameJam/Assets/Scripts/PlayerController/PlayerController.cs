@@ -18,6 +18,9 @@ namespace PlayerController {
 		private float internalSmoothingTime = 0.5f; // using this because the value from the input are too low
 		public Rigidbody playerRigidBody;
 		private Vector2 playerMovement;
+		private bool isGettingAttacked = false;
+		private Vector3 attackDirection = Vector3.zero;
+		public int attackForce = 8000;
 		public float playerHeight = 1.5f;
 
 		private float turnSmoothVelocity;
@@ -40,12 +43,22 @@ namespace PlayerController {
 			cameraBrain = _gameManager.cameraBrain;
 		}
 
+		private void Update() {
+			ApplyAttackForce();
+		}
+
+		private void ApplyAttackForce() {
+			if (!isGettingAttacked || attackDirection == Vector3.zero) return;
+			playerRigidBody.AddForce(attackDirection.normalized * attackForce);
+			attackDirection = Vector3.zero;
+		}
+
 		void FixedUpdate () {
-			// Debug.DrawRay(cameraBrain.transform.position, direction * 1000, Color.yellow);
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
 			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
 			SetDirection(playerMovement);
+			
 			if(transform.position.y < 1.4f || transform.position.y > 1.6f) {
 				transform.position = new Vector3(transform.position.x, playerHeight, transform.position.z);
 			}
@@ -82,6 +95,12 @@ namespace PlayerController {
 				yield return new WaitForSeconds(0.5f);
 				goldBitLootedFX.SetActive(false);
 			}
+		}
+
+		public void GetsAttacked(Vector3 attackPosition) {
+			Debug.Log("gets attacked!");
+			isGettingAttacked = true;
+			attackDirection = transform.position - attackPosition;
 		}
 
 		#region InputCallBack and Player Actions
