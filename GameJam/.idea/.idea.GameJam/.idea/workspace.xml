@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c9812cd-d4d8-4c14-8182-b3a769012009" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerControllerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerControllerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +33,12 @@
       <option value="$PROJECT_DIR$/Assets/ShovelHit.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/DataNode/DataNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GridManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" />
       <option value="$PROJECT_DIR$/Assets/GetInputEvent.cs" />
       <option value="$PROJECT_DIR$/Assets/LootableDataNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerControllerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/DataNode/Node.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nd9E078v99xIbXyaD6Lo3KaJlI" />
@@ -111,7 +108,7 @@
       <workItem from="1611845723323" duration="23976000" />
       <workItem from="1611893796585" duration="1174000" />
       <workItem from="1611926105121" duration="17651000" />
-      <workItem from="1611961310545" duration="3651000" />
+      <workItem from="1611961310545" duration="3925000" />
     </task>
     <servers />
   </component>

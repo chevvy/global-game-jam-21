@@ -79,6 +79,7 @@ namespace DataNode {
             dataNode.lootableDataNodePrefab = lootableDataNodePrefab;
             dataNode.LootableDataNodeHeight = LootableDataNodeHeight;
             dataNode.LootableDataNodeRadius = LootableDataNodeRadius;
+            dataNode.IsDataNode = true;
         }
 
         /// <summary>
@@ -86,8 +87,7 @@ namespace DataNode {
         /// </summary>
         /// <param name="playerID">the player ID</param>
         public void DigDataNode(int playerID = 0) {
-            // Breaks node 
-            // spawn random ore ? 
+            if(!IsDataNode) { return; }
             ResetNodeStatus();
             SpawnLootableDataNode();
         }
