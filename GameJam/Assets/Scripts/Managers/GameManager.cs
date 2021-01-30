@@ -5,6 +5,7 @@ using NUnit.Framework;
 using PlayerController;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = System.Random;
 
 namespace Managers
 {
@@ -23,6 +24,8 @@ namespace Managers
         private Dictionary<int, int> _scoreboard;
 
         public int ScoreToWin = 10;
+
+        private Random _random;
 
         #region Managers
 
@@ -63,6 +66,7 @@ namespace Managers
             CheckForAllSerializedParameters();
             _scoreboard = new Dictionary<int, int>();
             _targets = targetGroup.m_Targets;
+            _random = new Random();
         }
 
         private void SetsSingleton() {
@@ -102,10 +106,18 @@ namespace Managers
             }
             uiScores.SetPlayerScore(playerID, _scoreboard[playerID]);
         }
+        
+        public bool RemovePointFromPlayer(int playerID, int amountOfPoints) {
+            int newScore = _scoreboard[playerID] - amountOfPoints;
+            if (newScore < 0) { return false; }
+            _scoreboard[playerID] = newScore;
+            uiScores.SetPlayerScore(playerID, _scoreboard[playerID]);
+            return true;
+        }
 
         public bool IsGameFinished() {
-            foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
-                if((PlayerAndScore.Value >= ScoreToWin)) {
+            foreach (KeyValuePair<int,int> playerAndScore in _scoreboard) {
+                if((playerAndScore.Value >= ScoreToWin)) {
                     return true;
                 }
             }
@@ -114,12 +126,19 @@ namespace Managers
         }
 
         private void FinishGame() {
-            foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
-                if((PlayerAndScore.Value >= ScoreToWin)) {
-                    uiScores.OnEndGame(PlayerAndScore.Key);
+            foreach (KeyValuePair<int,int> playerAndScore in _scoreboard) {
+                if((playerAndScore.Value >= ScoreToWin)) {
+                    uiScores.OnEndGame(playerAndScore.Key);
                     cameraBrain.GetComponent<CinemachineBlendListCamera>().Priority = 10;
                 }
             }
+        }
+
+        public void PlayerTakesDamages(int playerID, Vector3 playerPosition) {
+            int amountOfnodeLost = _random.Next(1, 3);
+            Debug.Log("removed " + amountOfnodeLost + " of nodes");
+            if(!RemovePointFromPlayer(playerID, amountOfnodeLost)) { return;};
+            gridManager.SpawnLootableDataNode(amountOfnodeLost, playerPosition);
         }
     }
 }

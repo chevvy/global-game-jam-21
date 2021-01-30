@@ -98,9 +98,15 @@ namespace PlayerController {
 		}
 
 		public void GetsAttacked(Vector3 attackPosition) {
-			Debug.Log("gets attacked!");
 			isGettingAttacked = true;
 			attackDirection = transform.position - attackPosition;
+
+			StartCoroutine(WaitBeforeSpawningLootableNodes());
+			IEnumerator WaitBeforeSpawningLootableNodes() {
+				yield return new WaitForSeconds(0.2f);
+				GameManager.Instance.PlayerTakesDamages(playerID, transform.position);
+			}
+			
 		}
 
 		#region InputCallBack and Player Actions

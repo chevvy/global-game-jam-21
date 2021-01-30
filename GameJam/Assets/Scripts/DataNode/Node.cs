@@ -89,10 +89,10 @@ namespace DataNode {
         public void DigDataNode(int playerID = 0) {
             if(!IsDataNode) { return; }
             ResetNodeStatus();
-            SpawnLootableDataNode();
+            SpawnRandomAmountOfLootableDataNode();
         }
         
-        private void SpawnLootableDataNode() {
+        private void SpawnRandomAmountOfLootableDataNode() {
             Random random = new Random();
             Random randomAngle = new Random();
             int numberOfNewDataNode = random.Next(0, 5);
