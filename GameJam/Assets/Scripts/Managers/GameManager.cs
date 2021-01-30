@@ -103,7 +103,7 @@ namespace Managers
             uiScores.SetPlayerScore(playerID, _scoreboard[playerID]);
         }
 
-        private bool IsGameFinished() {
+        public bool IsGameFinished() {
             foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
                 if((PlayerAndScore.Value == ScoreToWin)) {
                     return true;
@@ -117,6 +117,7 @@ namespace Managers
             foreach (KeyValuePair<int,int> PlayerAndScore in _scoreboard) {
                 if((PlayerAndScore.Value >= ScoreToWin)) {
                     uiScores.OnEndGame(PlayerAndScore.Key);
+                    cameraBrain.GetComponent<CinemachineBlendListCamera>().Priority = 10;
                 }
             }
         }
