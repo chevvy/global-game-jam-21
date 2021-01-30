@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c9812cd-d4d8-4c14-8182-b3a769012009" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character/Player_Animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Character/Player_Animator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InputManager.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputManager.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player/Player_01.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UiTest/[BASICUI].prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UiTest/[BASICUI].prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,10 +101,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="22420">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="28964">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="22420" />
+      <option name="pid" value="28964" />
       <option name="selectedOptions">
         <list />
       </option>
@@ -156,5 +148,24 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs</url>
+          <line>119</line>
+          <properties documentPath="C:\Users\vince\Code\212\GameJam\Assets\Scripts\Managers\GameManager.cs" initialLine="119" containingFunctionPresentation="method 'FinishGame'">
+            <startOffsets>
+              <option value="3798" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3799" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
