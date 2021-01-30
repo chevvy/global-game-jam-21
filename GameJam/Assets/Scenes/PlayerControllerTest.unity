@@ -911,6 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 1664828095}
+  cameraBrain: {fileID: 953778442}
   centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   gridManager: {fileID: 1653694310}

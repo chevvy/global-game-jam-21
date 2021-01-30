@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,9 @@ namespace PlayerController {
 		private GameManager _gameManager;
 
 		public GameObject goldBitLootedFX;
+
+		public CinemachineBrain cameraBrain;
+		
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -33,11 +37,15 @@ namespace PlayerController {
 		void Start() {
 			_gameManager = GameManager.Instance;
 			_gameManager.AddCameraTarget(this);
+			cameraBrain = _gameManager.cameraBrain;
 		}
+		
+		
 
 		void FixedUpdate () {
+			// Debug.DrawRay(cameraBrain.transform.position, direction * 1000, Color.yellow);
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
- 
+			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
 			SetDirection(playerMovement);
 		}
@@ -50,7 +58,9 @@ namespace PlayerController {
 		void SetDirection(Vector2 movement)
 		{
 			// Inverts direction for the eyes to be in the same orientation as the moving direction
-			Vector3 direction = new Vector3(movement.x, 0f, movement.y).normalized;
+			// Vector3 direction = new Vector3(movement.x, 0f, movement.y).normalized;
+			Vector3 direction = cameraBrain.transform.rotation * new Vector3(movement.x, 0f, movement.y);
+			direction = direction.normalized;
 			if (direction.magnitude >= 0.1f)
 			{
 				float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
