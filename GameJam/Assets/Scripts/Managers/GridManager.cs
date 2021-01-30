@@ -122,6 +122,24 @@ namespace Managers
             }
         }
         
+        public void SpawnLootableDataNode(int numberOfNodeToSpawn, Vector3 spawnPoint) {
+            Random randomAngle = new Random();
+            for (int i = 0; i < numberOfNodeToSpawn; i++) {
+                Vector3 newPosition = GetRandomPositionAroundNode(randomAngle, spawnPoint);
+                Instantiate(LootableDataNodePrefab, newPosition, Quaternion.identity);    
+            }
+        }
+
+        private Vector3 GetRandomPositionAroundNode(Random randomGenerator, Vector3 spawnPoint) {
+            float radius = LootableNodePositionRadius;
+            float angle = randomGenerator.Next(0, 360);
+            Vector3 newPosition;
+            newPosition.x = spawnPoint.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
+            newPosition.y = spawnPoint.y + LootableDataNodeHeight;
+            newPosition.z = spawnPoint.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
+            return newPosition;
+        }
+        
         
 
         public void ReplaceNodeInNodesList(DataNode.Node node, int nodeID) {
