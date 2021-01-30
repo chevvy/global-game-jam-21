@@ -27,16 +27,6 @@ namespace PlayerController {
 			}
 			Debug.Log("Number of connected controller" + numberOfConnectedController);
 		}
-		
-		public void OnPlayerJoined(PlayerInput playerInput) {
-			Debug.Log("Joined: " + playerInput.GetInstanceID());
-		}
-
-		public void OnPlayerLeft(PlayerInput playerInput) {
-			Debug.Log("removed : " + playerInput.GetInstanceID());
-		}
-		
-
 
 		private void AssignGamepad(int deviceID) {
 			foreach (var currentGamepad in allGamepads) {
