@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -28,6 +29,8 @@ namespace Managers
         private HashSet<int> _indexesOfDataNode; // All the floor node indexes that are dataNode
         public int dataNodeHeightAtSpawn = 10;
         public float dataNodeMass = 30f;
+        [FormerlySerializedAs("dataNodeDelayBetweenEachSpawn")]
+        public int dataNodeMaxDelayBetweenSpawn = 5;
 
         void Awake() {
             CheckForMissingComponents();
@@ -102,11 +105,20 @@ namespace Managers
         /// </summary>
         /// <param name="indexes">HashSet of indexes to spawn new DataNode</param>
         public void SpawnDataNodes(HashSet<int> indexes) {
+            Random randomRange = new Random();
             foreach (int index in indexes) {
                 DataNode.Node currentNode = _floorNodes[index].GetComponent<DataNode.Node>();
-                currentNode.SpawnDataNode(index, this);
+                StartCoroutine(delayNodeSpawn());
+                IEnumerator delayNodeSpawn() {
+                    int secondsBeforeSpawn = randomRange.Next(0, dataNodeMaxDelayBetweenSpawn);
+                    yield return new WaitForSeconds(secondsBeforeSpawn);
+                    currentNode.SpawnDataNode(index, this);
+                }
+                
             }
         }
+        
+        
 
         public void ReplaceNodeInNodesList(DataNode.Node node, int nodeID) {
             // Memory protection 

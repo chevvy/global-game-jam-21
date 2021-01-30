@@ -15,6 +15,7 @@ namespace Managers
 
         public CinemachineTargetGroup targetGroup;
         private CinemachineTargetGroup.Target[] _targets;
+        public CinemachineBrain cameraBrain;
 
         public string centerOfMapObjectName = "MapCenter";
         public float defaultPlayerWeightToAdjustCamera = 5f;

@@ -911,6 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 1664828095}
+  cameraBrain: {fileID: 953778442}
   centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   gridManager: {fileID: 1653694310}
@@ -949,9 +950,10 @@ MonoBehaviour:
   LootableDataNodePrefab: {fileID: 4398321146614624919, guid: e3c5883584a5ff0409c6805263a6362b, type: 3}
   LootableNodePositionRadius: 2
   LootableDataNodeHeight: 1
-  numberOfDataNode: 20
+  numberOfDataNode: 40
   dataNodeHeightAtSpawn: 40
   dataNodeMass: 50
+  dataNodeMaxDelayBetweenSpawn: 4
 --- !u!1 &1664828093
 GameObject:
   m_ObjectHideFlags: 0
