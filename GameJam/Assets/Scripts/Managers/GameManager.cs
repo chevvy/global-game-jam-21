@@ -20,18 +20,46 @@ namespace Managers
         public string centerOfMapObjectName = "MapCenter";
         public float defaultPlayerWeightToAdjustCamera = 5f;
 
-        public Dictionary<int, int> scoreboard;
+        private Dictionary<int, int> _scoreboard;
 
         #region Managers
 
         public GridManager gridManager;
         public PlayerControllerManager playerControllerManager;
+        public UIScores uiScores;
+        
+        #endregion
+
+        #region Checks at initialization
+
+        private void CheckForAllSerializedParameters() {
+            if (targetGroup == null) {
+                Debug.LogError("Missing targetgroup on GameManager");
+            }
+            
+            if (cameraBrain == null) {
+                Debug.LogError("Missing cinemachineBrain (cameraBrain) on GameManager");
+            }
+            
+            if (gridManager == null) {
+                Debug.LogError("Missing gridManager on GameManager");
+            }
+            
+            if (playerControllerManager == null) {
+                Debug.LogError("Missing playerControllerManager on GameManager");
+            }
+            
+            if (uiScores == null) {
+                Debug.LogError("Missing uiScores on GameManager");
+            }
+        }
 
         #endregion
 
         private void Awake() {
             SetsSingleton();
-            scoreboard = new Dictionary<int, int>();
+            CheckForAllSerializedParameters();
+            _scoreboard = new Dictionary<int, int>();
             _targets = targetGroup.m_Targets;
         }
 
@@ -57,16 +85,17 @@ namespace Managers
         }
 
         public void AddPlayerToScoreboard(int playerID) {
-            scoreboard.Add(playerID, 0);
+            _scoreboard.Add(playerID, 0);
         }
 
         public void RemovePlayerFromScoreboard(int playerID) {
-            scoreboard.Remove(playerID);
+            _scoreboard.Remove(playerID);
         }
 
         public void AddPointToPlayer(int playerID) {
-            scoreboard[playerID]++;
-            Debug.Log("Player " + playerID + " , current score = " + scoreboard[playerID]);
+            _scoreboard[playerID]++;
+            uiScores.SetPlayerScore(playerID, _scoreboard[playerID]);
+            Debug.Log("Player " + playerID + " , current score = " + _scoreboard[playerID]);
         }
     }
 }
