@@ -4,6 +4,7 @@ using Cinemachine;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace PlayerController {
@@ -118,6 +119,14 @@ namespace PlayerController {
 			
 			if (context.performed) {
 				animator.SetTrigger(Attack);
+			}
+		}
+
+		public void OnStart(InputAction.CallbackContext context) {
+			if (context.performed) {
+				if (GameManager.Instance.IsGameFinished()) {
+					SceneManager.LoadScene("PlayerControllerTest");
+				}
 			}
 		}
 
