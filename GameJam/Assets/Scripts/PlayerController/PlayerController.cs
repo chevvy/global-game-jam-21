@@ -24,6 +24,10 @@ namespace PlayerController {
 		public int attackForce = 8000;
 		public float playerHeight = 1.5f;
 
+		private bool _isDashing = false;
+		[SerializeField] private float dashDistance = 5f;
+		[SerializeField] private GameObject DashEffect;
+		
 		private float turnSmoothVelocity;
 
 		private GameManager _gameManager;
@@ -69,7 +73,30 @@ namespace PlayerController {
 
 		private void Update() {
 			if (!CanPlayerAct()) { return; }
+
+			if (_isDashing) {
+				Dash();
+			}
 			ApplyAttackForce();
+		}
+
+		private void Dash() {
+			if (DashEffect != null) {
+				DashEffect.SetActive(true);
+				StartCoroutine(Timer());
+				IEnumerator Timer() {
+					yield return new WaitForSeconds(0.8f);
+					DashEffect.SetActive(false);
+				}
+			}
+			Vector3 dashVelocity = Vector3.Scale(
+				transform.forward,
+				dashDistance * new Vector3(
+					(Mathf.Log(1f / (Time.deltaTime * playerRigidBody.drag + 1)) / -Time.deltaTime),
+					0,
+					(Mathf.Log(1f / (Time.deltaTime * playerRigidBody.drag + 1)) / -Time.deltaTime)));
+			playerRigidBody.AddForce(dashVelocity, ForceMode.VelocityChange);
+			_isDashing = false;
 		}
 
 		private void ApplyAttackForce() {
@@ -189,6 +216,14 @@ namespace PlayerController {
 					emptyStrike.Play();
 				}
 				animator.SetTrigger(Attack);
+			}
+		}
+
+		public void OnDash(InputAction.CallbackContext context) {
+			if (!CanPlayerAct()) { return; }
+
+			if (context.performed) {
+				_isDashing = true;
 			}
 		}
 
