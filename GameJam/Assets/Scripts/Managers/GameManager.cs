@@ -27,21 +27,27 @@ namespace Managers
 
         private Random _random;
 
+        private List<GameObject> players;
+
+        #region Audio
         public AudioSource dropRing;
         public AudioSource digMiss;
         public AudioSource digHit;
+        #endregion
 
         #region Managers
 
         public GridManager gridManager;
         public PlayerControllerManager playerControllerManager;
         public UIScores uiScores;
+        public Podium podium;
         
         #endregion
 
         #region Checks at initialization
 
         private void CheckForAllSerializedParameters() {
+            // TODO faire une méthode plus clean pour hanlde ces messages
             if (targetGroup == null) {
                 Debug.LogError("Missing targetgroup on GameManager");
             }
@@ -61,6 +67,10 @@ namespace Managers
             if (uiScores == null) {
                 Debug.LogError("Missing uiScores on GameManager");
             }
+
+            if (podium == null) {
+                Debug.LogError("Missing podium on GameManager");
+            }
         }
 
         #endregion
@@ -71,6 +81,7 @@ namespace Managers
             _scoreboard = new Dictionary<int, int>();
             _targets = targetGroup.m_Targets;
             _random = new Random();
+            players = new List<GameObject>();
         }
 
         private void SetsSingleton() {
@@ -94,8 +105,9 @@ namespace Managers
             }
         }
 
-        public void AddPlayerToScoreboard(int playerID) {
-            _scoreboard.Add(playerID, 0);
+        public void AddPlayer(PlayerInput playerInput) {
+            _scoreboard.Add(playerInput.playerIndex, 0);
+            players.Add(playerInput.gameObject);
         }
 
         public void RemovePlayerFromScoreboard(int playerID) {
@@ -134,8 +146,27 @@ namespace Managers
                 if((playerAndScore.Value >= ScoreToWin)) {
                     uiScores.OnEndGame(playerAndScore.Key);
                     cameraBrain.GetComponent<CinemachineBlendListCamera>().Priority = 10;
+                    podium.SetPlayersReference(players);
+                    podium.EndGameSetup(GetOrderOfWinner());
                 }
             }
+        }
+
+        public List<int> GetOrderOfWinner() {
+            List<int> winningOrder = new List<int>();
+            List<int> winningScores = new List<int>();
+            foreach (KeyValuePair<int, int> playerAndScore in _scoreboard) {
+                winningScores.Add(playerAndScore.Value);
+            }
+            winningScores.Sort();
+            foreach (var score in winningScores) {
+                foreach (var playerAndScore in _scoreboard) {
+                    if (playerAndScore.Value == score) {
+                        winningOrder.Add(playerAndScore.Key);
+                    }
+                }
+            }
+            return winningOrder;
         }
 
         public void PlayerTakesDamages(int playerID, Vector3 playerPosition) {

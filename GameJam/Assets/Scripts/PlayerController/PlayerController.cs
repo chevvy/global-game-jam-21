@@ -30,6 +30,11 @@ namespace PlayerController {
 		public GameObject goldBitLootedFX;
 		public CinemachineBrain cameraBrain;
 
+		[SerializeField] Material[] playerMaterials;
+		[SerializeField] private SkinnedMeshRenderer playerMeshRender;
+
+		public bool isGameFinished = false;
+		
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -43,9 +48,8 @@ namespace PlayerController {
 		public AudioSource hit1;
 		public AudioSource gainRing;
 		private AudioSource DigMiss => GameManager.Instance.digMiss;
-
 		public AudioSource[] walkSFX;
-
+		
 		#endregion
 
 		#region Unity public fonctions
@@ -53,9 +57,18 @@ namespace PlayerController {
 			_gameManager = GameManager.Instance;
 			_gameManager.AddCameraTarget(this);
 			cameraBrain = _gameManager.cameraBrain;
+			if (playerMaterials[playerID] == null) {
+				Debug.LogError("Missing material for playerID on playerPrefab");
+			}
+
+			if (playerMeshRender == null) {
+				Debug.LogError("Missing meshRender reference on PlayerPrefab");
+			} 
+			playerMeshRender.material = playerMaterials[playerID];
 		}
 
 		private void Update() {
+			if (!CanPlayerAct()) { return; }
 			ApplyAttackForce();
 		}
 
@@ -66,6 +79,7 @@ namespace PlayerController {
 		}
 
 		void FixedUpdate () {
+			if (!CanPlayerAct()) { return; }
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
 			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
@@ -139,7 +153,7 @@ namespace PlayerController {
 
 		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
-			if (!IsAnimatorValid()) { return; }
+			if (!IsAnimatorValid() || !CanPlayerAct()) { return; }
 			
 			float playerMovementMagnitude = playerMovement.magnitude;
 			playerMovementMagnitude = playerMovementMagnitude < 0 ? -playerMovementMagnitude
@@ -159,7 +173,7 @@ namespace PlayerController {
 
 		public void OnDig(InputAction.CallbackContext context) {
 			// In case the animator reference gets lost during assignation
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if(context.performed) {
 				animator.SetTrigger(Dig);
@@ -168,7 +182,7 @@ namespace PlayerController {
 
 		public void OnAttack(InputAction.CallbackContext context)
 		{	
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if (context.performed) {
 				if (!isGettingAttacked) {
@@ -195,6 +209,14 @@ namespace PlayerController {
 		/// <returns>Animator status</returns>
 		private bool IsAnimatorValid() {
 			return animator != null && animator.isActiveAndEnabled;
+		}
+
+		private bool CanPlayerAct() {
+			return IsAnimatorValid() || !isGameFinished;
+		}
+
+		public Material GetPlayerMaterial() {
+			return playerMeshRender.material;
 		}
 		
 
