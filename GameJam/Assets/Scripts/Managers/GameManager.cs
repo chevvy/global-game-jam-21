@@ -28,6 +28,7 @@ namespace Managers
         private Random _random;
 
         private List<GameObject> players;
+        [SerializeField] private List<Material> podiumMaterials;
 
         #region Audio
         public AudioSource dropRing;

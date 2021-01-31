@@ -666,7 +666,7 @@ Camera:
   far clip plane: 1000
   field of view: 71
   orthographic: 1
-  orthographic size: 9.83
+  orthographic size: 1084.89
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1401,6 +1401,7 @@ MonoBehaviour:
   centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   ScoreToWin: 10
+  podiumMaterials: []
   dropRing: {fileID: 753180816}
   digMiss: {fileID: 1608514828}
   digHit: {fileID: 986961043}
