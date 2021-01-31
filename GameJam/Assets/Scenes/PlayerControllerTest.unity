@@ -320,7 +320,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207338683}
-  m_LocalRotation: {x: 0.21367048, y: -0.31543812, z: 0.073127024, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
   m_LocalPosition: {x: 6.0677958, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -509,8 +509,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725187646}
-  m_LocalRotation: {x: -0.06635879, y: -0.00000011920929, z: 0.000000037252903, w: 0.9977959}
-  m_LocalPosition: {x: 43.905453, y: 20.517796, z: 41.87412}
+  m_LocalRotation: {x: -0.06635879, y: -0.00000014901161, z: 0.000000052154064, w: 0.9977959}
+  m_LocalPosition: {x: 43.90545, y: 20.517797, z: 41.874123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 81509945}
@@ -1009,7 +1009,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953778437}
-  m_LocalRotation: {x: 0.21367048, y: -0.31543812, z: 0.073127024, w: 0.92168117}
+  m_LocalRotation: {x: 0.21367048, y: -0.3154381, z: 0.073127024, w: 0.92168117}
   m_LocalPosition: {x: 6.0677958, y: 8.190016, z: -11.256985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1889,11 +1889,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 1664828095}
+  cameraMapCenterTarget: {fileID: 1624632091}
   cameraBrain: {fileID: 953778442}
   centerOfMapObjectName: MapCenter
   defaultPlayerWeightToAdjustCamera: 5
   ScoreToWin: 10
   podiumMaterials: []
+  Presentation: {fileID: 8556026016395725466}
+  MapCenterCamera: {fileID: 1624632092}
   dropRing: {fileID: 753180816}
   digMiss: {fileID: 1608514828}
   digHit: {fileID: 986961043}
