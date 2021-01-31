@@ -32,6 +32,8 @@ namespace PlayerController {
 
 		[SerializeField] Material[] playerMaterials;
 		[SerializeField] private SkinnedMeshRenderer playerMeshRender;
+
+		public bool isGameFinished = false;
 		
 		#region Animator variables
 		public Animator animator;
@@ -66,6 +68,7 @@ namespace PlayerController {
 		}
 
 		private void Update() {
+			if (!CanPlayerAct()) { return; }
 			ApplyAttackForce();
 		}
 
@@ -76,6 +79,7 @@ namespace PlayerController {
 		}
 
 		void FixedUpdate () {
+			if (!CanPlayerAct()) { return; }
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
 			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
@@ -149,7 +153,7 @@ namespace PlayerController {
 
 		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
-			if (!IsAnimatorValid()) { return; }
+			if (!IsAnimatorValid() || !CanPlayerAct()) { return; }
 			
 			float playerMovementMagnitude = playerMovement.magnitude;
 			playerMovementMagnitude = playerMovementMagnitude < 0 ? -playerMovementMagnitude
@@ -169,7 +173,7 @@ namespace PlayerController {
 
 		public void OnDig(InputAction.CallbackContext context) {
 			// In case the animator reference gets lost during assignation
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if(context.performed) {
 				animator.SetTrigger(Dig);
@@ -178,7 +182,7 @@ namespace PlayerController {
 
 		public void OnAttack(InputAction.CallbackContext context)
 		{	
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if (context.performed) {
 				if (!isGettingAttacked) {
@@ -205,6 +209,14 @@ namespace PlayerController {
 		/// <returns>Animator status</returns>
 		private bool IsAnimatorValid() {
 			return animator != null && animator.isActiveAndEnabled;
+		}
+
+		private bool CanPlayerAct() {
+			return IsAnimatorValid() || !isGameFinished;
+		}
+
+		public Material GetPlayerMaterial() {
+			return playerMeshRender.material;
 		}
 		
 
