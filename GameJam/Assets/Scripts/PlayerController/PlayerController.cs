@@ -36,6 +36,13 @@ namespace PlayerController {
 		private static readonly int Attack = Animator.StringToHash("attack");
 		#endregion
 
+		#region Audio
+
+		public AudioSource emptyStrike;
+		public AudioSource hit1;
+
+		#endregion
+
 		#region Unity public fonctions
 		void Start() {
 			_gameManager = GameManager.Instance;
@@ -100,6 +107,7 @@ namespace PlayerController {
 		public void GetsAttacked(Vector3 attackPosition) {
 			isGettingAttacked = true;
 			attackDirection = transform.position - attackPosition;
+			hit1.Play();
 
 			StartCoroutine(WaitBeforeSpawningLootableNodes());
 			IEnumerator WaitBeforeSpawningLootableNodes() {
@@ -143,6 +151,9 @@ namespace PlayerController {
 			if (!IsAnimatorValid()) { return; }
 			
 			if (context.performed) {
+				if (!isGettingAttacked) {
+					emptyStrike.Play();
+				}
 				animator.SetTrigger(Attack);
 			}
 		}
