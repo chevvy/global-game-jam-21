@@ -297,6 +297,7 @@ MonoBehaviour:
   attackForce: 8000
   playerHeight: 1.5
   dashDistance: 5
+  DashEffect: {fileID: 2332221394336731180}
   goldBitLootedFX: {fileID: 8156005804742869514}
   cameraBrain: {fileID: 0}
   playerMaterials:
@@ -1877,8 +1878,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Dash
       objectReference: {fileID: 0}
+    - target: {fileID: 9127611449137683397, guid: b68a9180d4e3d104abccc74e707df294, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b68a9180d4e3d104abccc74e707df294, type: 3}
+--- !u!1 &2332221394336731180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9127611449137683397, guid: b68a9180d4e3d104abccc74e707df294, type: 3}
+  m_PrefabInstance: {fileID: 6842794401335479273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7682626234313671937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3776363514709348072, guid: b68a9180d4e3d104abccc74e707df294, type: 3}
