@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace PlayerController {
 	public class PlayerController : MonoBehaviour {
@@ -34,6 +35,17 @@ namespace PlayerController {
 		private static readonly int Move = Animator.StringToHash("move");
 		private static readonly int Dig = Animator.StringToHash("dig");
 		private static readonly int Attack = Animator.StringToHash("attack");
+		#endregion
+
+		#region Audio
+
+		public AudioSource emptyStrike;
+		public AudioSource hit1;
+		public AudioSource gainRing;
+		private AudioSource DigMiss => GameManager.Instance.digMiss;
+
+		public AudioSource[] walkSFX;
+
 		#endregion
 
 		#region Unity public fonctions
@@ -85,7 +97,7 @@ namespace PlayerController {
 			}
 		}
 
-		public void AddPoint() {
+		public void LootDataNode() {
 			GameManager.Instance.AddPointToPlayer(playerID);
 			goldBitLootedFX.SetActive(false);
 			goldBitLootedFX.SetActive(true);
@@ -95,19 +107,35 @@ namespace PlayerController {
 				yield return new WaitForSeconds(0.5f);
 				goldBitLootedFX.SetActive(false);
 			}
+			gainRing.Play();
 		}
 
 		public void GetsAttacked(Vector3 attackPosition) {
 			isGettingAttacked = true;
 			attackDirection = transform.position - attackPosition;
+			hit1.Play();
 
 			StartCoroutine(WaitBeforeSpawningLootableNodes());
 			IEnumerator WaitBeforeSpawningLootableNodes() {
 				yield return new WaitForSeconds(0.2f);
 				GameManager.Instance.PlayerTakesDamages(playerID, transform.position);
 			}
-			
 		}
+
+		#region Audio functions
+
+		public void PlayDigSound() {
+			DigMiss.Play();
+		}
+
+		public void PlayWalkSound() {
+			AudioSource selectedClip = walkSFX[Random.Range(0, 2)];
+			selectedClip.pitch = Random.Range(0.88f, 1.10f);
+			selectedClip.Play();
+		}
+
+		#endregion
+		
 
 		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
@@ -143,6 +171,9 @@ namespace PlayerController {
 			if (!IsAnimatorValid()) { return; }
 			
 			if (context.performed) {
+				if (!isGettingAttacked) {
+					emptyStrike.Play();
+				}
 				animator.SetTrigger(Attack);
 			}
 		}

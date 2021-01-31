@@ -27,6 +27,10 @@ namespace Managers
 
         private Random _random;
 
+        public AudioSource dropRing;
+        public AudioSource digMiss;
+        public AudioSource digHit;
+
         #region Managers
 
         public GridManager gridManager;
@@ -139,6 +143,7 @@ namespace Managers
             Debug.Log("removed " + amountOfnodeLost + " of nodes");
             if(!RemovePointFromPlayer(playerID, amountOfnodeLost)) { return;};
             gridManager.SpawnLootableDataNode(amountOfnodeLost, playerPosition);
+            dropRing.Play();
         }
     }
 }

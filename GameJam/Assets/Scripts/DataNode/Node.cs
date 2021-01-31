@@ -22,6 +22,10 @@ namespace DataNode {
         
         private bool _isCheckingForFloor;
 
+        private AudioSource digMiss;
+        private AudioSource digHit;
+        
+
         private void OnCollisionEnter(Collision other) {
             if (!_isCheckingForFloor) return;
             if (other.gameObject.CompareTag("FloorHolder")) {
@@ -36,6 +40,8 @@ namespace DataNode {
             yield return new WaitForSeconds(1);
             GetComponent<Rigidbody>().isKinematic = true;
             _isCheckingForFloor = false;
+            digHit = GameManager.Instance.digHit;
+            digMiss = GameManager.Instance.digMiss;
         }
 
         public void SpawnDataNode(int nodeID, GridManager gridManagerInstance) {
@@ -87,7 +93,11 @@ namespace DataNode {
         /// </summary>
         /// <param name="playerID">the player ID</param>
         public void DigDataNode(int playerID = 0) {
-            if(!IsDataNode) { return; }
+            if (!IsDataNode) {
+                digMiss.Play();
+                return;
+            }
+            // play dig sound
             ResetNodeStatus();
             SpawnRandomAmountOfLootableDataNode();
         }
@@ -96,6 +106,12 @@ namespace DataNode {
             Random random = new Random();
             Random randomAngle = new Random();
             int numberOfNewDataNode = random.Next(0, 5);
+            if (numberOfNewDataNode == 0) {
+                digMiss.Play();
+            } else {
+                digHit.Play();
+            }
+            
             for (int i = 0; i < numberOfNewDataNode; i++) {
                 Vector3 newPosition = GetRandomPositionAroundNode(randomAngle);
                 Instantiate(lootableDataNodePrefab, newPosition, Quaternion.identity);    
