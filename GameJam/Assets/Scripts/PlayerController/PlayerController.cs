@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace PlayerController {
 	public class PlayerController : MonoBehaviour {
@@ -29,6 +30,11 @@ namespace PlayerController {
 		public GameObject goldBitLootedFX;
 		public CinemachineBrain cameraBrain;
 
+		[SerializeField] Material[] playerMaterials;
+		[SerializeField] private SkinnedMeshRenderer playerMeshRender;
+
+		public bool isGameFinished = false;
+		
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -36,14 +42,33 @@ namespace PlayerController {
 		private static readonly int Attack = Animator.StringToHash("attack");
 		#endregion
 
+		#region Audio
+
+		public AudioSource emptyStrike;
+		public AudioSource hit1;
+		public AudioSource gainRing;
+		private AudioSource DigMiss => GameManager.Instance.digMiss;
+		public AudioSource[] walkSFX;
+		
+		#endregion
+
 		#region Unity public fonctions
 		void Start() {
 			_gameManager = GameManager.Instance;
 			_gameManager.AddCameraTarget(this);
 			cameraBrain = _gameManager.cameraBrain;
+			if (playerMaterials[playerID] == null) {
+				Debug.LogError("Missing material for playerID on playerPrefab");
+			}
+
+			if (playerMeshRender == null) {
+				Debug.LogError("Missing meshRender reference on PlayerPrefab");
+			} 
+			playerMeshRender.material = playerMaterials[playerID];
 		}
 
 		private void Update() {
+			if (!CanPlayerAct()) { return; }
 			ApplyAttackForce();
 		}
 
@@ -54,6 +79,7 @@ namespace PlayerController {
 		}
 
 		void FixedUpdate () {
+			if (!CanPlayerAct()) { return; }
 			Vector3 movement = new Vector3 (playerMovement.x, 0.0f, playerMovement.y);
 			movement = cameraBrain.transform.rotation * movement;
 			playerRigidBody.AddForce (movement * playerSpeed);
@@ -85,7 +111,7 @@ namespace PlayerController {
 			}
 		}
 
-		public void AddPoint() {
+		public void LootDataNode() {
 			GameManager.Instance.AddPointToPlayer(playerID);
 			goldBitLootedFX.SetActive(false);
 			goldBitLootedFX.SetActive(true);
@@ -95,23 +121,39 @@ namespace PlayerController {
 				yield return new WaitForSeconds(0.5f);
 				goldBitLootedFX.SetActive(false);
 			}
+			gainRing.Play();
 		}
 
 		public void GetsAttacked(Vector3 attackPosition) {
 			isGettingAttacked = true;
 			attackDirection = transform.position - attackPosition;
+			hit1.Play();
 
 			StartCoroutine(WaitBeforeSpawningLootableNodes());
 			IEnumerator WaitBeforeSpawningLootableNodes() {
 				yield return new WaitForSeconds(0.2f);
 				GameManager.Instance.PlayerTakesDamages(playerID, transform.position);
 			}
-			
 		}
+
+		#region Audio functions
+
+		public void PlayDigSound() {
+			DigMiss.Play();
+		}
+
+		public void PlayWalkSound() {
+			AudioSource selectedClip = walkSFX[Random.Range(0, 2)];
+			selectedClip.pitch = Random.Range(0.88f, 1.10f);
+			selectedClip.Play();
+		}
+
+		#endregion
+		
 
 		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
-			if (!IsAnimatorValid()) { return; }
+			if (!IsAnimatorValid() || !CanPlayerAct()) { return; }
 			
 			float playerMovementMagnitude = playerMovement.magnitude;
 			playerMovementMagnitude = playerMovementMagnitude < 0 ? -playerMovementMagnitude
@@ -131,7 +173,7 @@ namespace PlayerController {
 
 		public void OnDig(InputAction.CallbackContext context) {
 			// In case the animator reference gets lost during assignation
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if(context.performed) {
 				animator.SetTrigger(Dig);
@@ -140,9 +182,12 @@ namespace PlayerController {
 
 		public void OnAttack(InputAction.CallbackContext context)
 		{	
-			if (!IsAnimatorValid()) { return; }
+			if (!CanPlayerAct()) { return; }
 			
 			if (context.performed) {
+				if (!isGettingAttacked) {
+					emptyStrike.Play();
+				}
 				animator.SetTrigger(Attack);
 			}
 		}
@@ -164,6 +209,14 @@ namespace PlayerController {
 		/// <returns>Animator status</returns>
 		private bool IsAnimatorValid() {
 			return animator != null && animator.isActiveAndEnabled;
+		}
+
+		private bool CanPlayerAct() {
+			return IsAnimatorValid() && !isGameFinished;
+		}
+
+		public Material GetPlayerMaterial() {
+			return playerMeshRender.material;
 		}
 		
 

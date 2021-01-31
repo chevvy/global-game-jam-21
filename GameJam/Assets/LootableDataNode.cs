@@ -7,7 +7,7 @@ public class LootableDataNode : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            other.GetComponent<PlayerController.PlayerController>().AddPoint();
+            other.GetComponent<PlayerController.PlayerController>().LootDataNode();
             Destroy(gameObject);
         }
     }

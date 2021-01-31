@@ -10,7 +10,8 @@ public class GetInputEvent : MonoBehaviour
     public void OnPlayerJoined(PlayerInput playerInput) {
         Debug.Log("Joined: " + playerInput.playerIndex);
         playerInput.GetComponent<PlayerController.PlayerController>().playerID = playerInput.playerIndex;
-        GameManager.Instance.AddPlayerToScoreboard(playerInput.playerIndex);
+        GameManager.Instance.AddPlayer(playerInput);
+
     }
 
     public void OnPlayerRemoved(PlayerInput playerInput) {
