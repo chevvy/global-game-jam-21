@@ -285,6 +285,10 @@ MonoBehaviour:
   emptyStrike: {fileID: 2624027210674906203}
   hit1: {fileID: 5725792720892849732}
   gainRing: {fileID: 122015780216969422}
+  walkSFX:
+  - {fileID: 78525054960516726}
+  - {fileID: 2078961462992591394}
+  - {fileID: 3765059101090770784}
 --- !u!114 &2211893304717437061
 MonoBehaviour:
   m_ObjectHideFlags: 0

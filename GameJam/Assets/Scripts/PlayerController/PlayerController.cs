@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace PlayerController {
 	public class PlayerController : MonoBehaviour {
@@ -43,10 +44,8 @@ namespace PlayerController {
 		public AudioSource gainRing;
 		private AudioSource DigMiss => GameManager.Instance.digMiss;
 
-		public AudioSource walk1;
-		public AudioSource walk2;
-		public AudioSource walk3;
-		
+		public AudioSource[] walkSFX;
+
 		#endregion
 
 		#region Unity public fonctions
@@ -123,9 +122,20 @@ namespace PlayerController {
 			}
 		}
 
+		#region Audio functions
+
 		public void PlayDigSound() {
 			DigMiss.Play();
 		}
+
+		public void PlayWalkSound() {
+			AudioSource selectedClip = walkSFX[Random.Range(0, 2)];
+			selectedClip.pitch = Random.Range(0.88f, 1.10f);
+			selectedClip.Play();
+		}
+
+		#endregion
+		
 
 		#region InputCallBack and Player Actions
 		public void OnMove(InputAction.CallbackContext context) {
