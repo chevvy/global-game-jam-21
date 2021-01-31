@@ -212,7 +212,7 @@ namespace PlayerController {
 		}
 
 		private bool CanPlayerAct() {
-			return IsAnimatorValid() || !isGameFinished;
+			return IsAnimatorValid() && !isGameFinished;
 		}
 
 		public Material GetPlayerMaterial() {
