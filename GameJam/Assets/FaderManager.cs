@@ -70,7 +70,7 @@ public class FaderManager : MonoBehaviour {
                 mixer.audioMixer,
                 _transitionParam,
                 transitionTime,
-                1f));
+                0.5f));
     }
     
     private void FadeOutTransition() {
@@ -97,6 +97,6 @@ public class FaderManager : MonoBehaviour {
                 mixer.audioMixer,
                 _mainLoopParam,
                 transitionTime,
-                1f));
+                0.5f));
     }
 }

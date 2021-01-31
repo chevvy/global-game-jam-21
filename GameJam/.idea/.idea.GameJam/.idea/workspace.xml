@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c9812cd-d4d8-4c14-8182-b3a769012009" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameJam/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/EndGame.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/EndGame.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Gameplay.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Gameplay.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Intro.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Intro.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Start_Loop.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Start_Loop.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans1_V1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans1_V1.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans1_V2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans1_V2.wav.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SFX/Music/Trans2.wav.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/FaderManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FaderManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerControllerTest.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +69,8 @@
       <option value="$PROJECT_DIR$/Assets/Podium.cs" />
       <option value="$PROJECT_DIR$/Assets/PodiumStep.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController/PlayerController.cs" />
-      <option value="$PROJECT_DIR$/Assets/FaderManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/FaderManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nd9E078v99xIbXyaD6Lo3KaJlI" />
@@ -129,7 +142,7 @@
       <workItem from="1611893796585" duration="1174000" />
       <workItem from="1611926105121" duration="17651000" />
       <workItem from="1611961310545" duration="4587000" />
-      <workItem from="1612122604180" duration="472000" />
+      <workItem from="1612122604180" duration="1055000" />
     </task>
     <servers />
   </component>

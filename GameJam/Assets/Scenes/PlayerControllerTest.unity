@@ -666,7 +666,7 @@ Camera:
   far clip plane: 1000
   field of view: 71
   orthographic: 1
-  orthographic size: 1084.89
+  orthographic size: 9.83
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1026,11 +1026,11 @@ MonoBehaviour:
   mixer: {fileID: 24300002, guid: 170862361858b684d88981e51c1ccbd1, type: 2}
   ActiveMainLoopSource: {fileID: 984271151}
   ActiveTransitionSource: {fileID: 984271150}
-  menuLoop: {fileID: 8300000, guid: d8c7828f46b1490479eda98620a06eff, type: 3}
-  gameplayLoop: {fileID: 8300000, guid: 1fac7373af15d6340831242c14b629f0, type: 3}
-  endLoop: {fileID: 8300000, guid: 5a4c14731b6282a4cb0d8a1bf579507a, type: 3}
-  menuToGameplayTransition: {fileID: 8300000, guid: aece85717e9691b48b9462061d5f7a39, type: 3}
-  gameplayToEndTransition: {fileID: 8300000, guid: c0c1a47a82bdd1547a4309856d7bba45, type: 3}
+  menuLoop: {fileID: 8300000, guid: 691d0346484be4144875f0fae1d4ed91, type: 3}
+  gameplayLoop: {fileID: 8300000, guid: 8e86836e2b8b441a781152dfb4946447, type: 3}
+  endLoop: {fileID: 8300000, guid: 8b71600428ef04651bcc252e79cf7a32, type: 3}
+  menuToGameplayTransition: {fileID: 8300000, guid: 6a517e9f052e84fae88fe51e0c2d720f, type: 3}
+  gameplayToEndTransition: {fileID: 8300000, guid: 180fe80c7adea4b2f8dfd0aa18058dcf, type: 3}
   transitionTime: 1
 --- !u!1 &986961041
 GameObject:
