@@ -29,12 +29,11 @@ namespace PlayerController {
 		}
 
 		private void AssignGamepad(int deviceID) {
-			foreach (var currentGamepad in allGamepads) {
-				if (currentGamepad.deviceId == deviceID) {
-					assignedGamepads.Add(currentGamepad);
-					Debug.Log("assigned gamepad => " + deviceID);
-				}
-			}
+			// foreach (var currentGamepad in allGamepads) {
+			// 	if (currentGamepad.deviceId == deviceID) {
+			// 		assignedGamepads.Add(currentGamepad);
+			// 	}
+			// }
 		}
 
 		private void RemoveGamepad(int deviceID) {

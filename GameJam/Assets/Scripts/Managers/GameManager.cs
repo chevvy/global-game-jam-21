@@ -16,6 +16,8 @@ namespace Managers
 
         public CinemachineTargetGroup targetGroup;
         private CinemachineTargetGroup.Target[] _targets;
+        [SerializeField] public Transform cameraMapCenterTarget;
+        
         public CinemachineBrain cameraBrain;
 
         public string centerOfMapObjectName = "MapCenter";
@@ -28,8 +30,17 @@ namespace Managers
         private Random _random;
 
         private List<GameObject> players;
-        [SerializeField] private List<Material> podiumMaterials;
+        [SerializeField] public List<Material> podiumMaterials;
 
+        [SerializeField] private Animator Presentation;
+        [SerializeField] private Animator MapCenterCamera;
+        private static readonly int In = Animator.StringToHash("In");
+        private static readonly int Out = Animator.StringToHash("Out");
+        private static readonly int Game = Animator.StringToHash("Game");
+        private static readonly int Win = Animator.StringToHash("Win");
+        private bool hasGameBegun = false;
+        
+        
         #region Audio
         public AudioSource dropRing;
         public AudioSource digMiss;
@@ -43,6 +54,7 @@ namespace Managers
         public PlayerControllerManager playerControllerManager;
         public UIScores uiScores;
         public Podium podium;
+        
         
         #endregion
 
@@ -80,6 +92,7 @@ namespace Managers
         }
 
         #endregion
+
 
         private void Awake() {
             SetsSingleton();
@@ -151,11 +164,19 @@ namespace Managers
             faderManager.GoToEndLoop();
             foreach (KeyValuePair<int,int> playerAndScore in _scoreboard) {
                 if((playerAndScore.Value >= ScoreToWin)) {
+                    RemoveCameraWeightOnPlayers();
                     uiScores.OnEndGame(playerAndScore.Key);
                     cameraBrain.GetComponent<CinemachineBlendListCamera>().Priority = 10;
                     podium.SetPlayersReference(players);
                     podium.EndGameSetup(GetOrderOfWinner());
+                    MapCenterCamera.SetTrigger(Win);
                 }
+            }
+        }
+
+        public void RemoveCameraWeightOnPlayers() {
+            for (int i = 0; i < _targets.Length; i++) {
+                _targets[i].target = cameraMapCenterTarget;
             }
         }
 
@@ -185,9 +206,14 @@ namespace Managers
         }
 
         public void PressedStart() {
-            if (!IsGameFinished()) {
+            if (!IsGameFinished() && !hasGameBegun) {
                 faderManager.GoToMainLoop();
+                OnGameBegin();
             }
+        }
+        
+        private void OnGameBegin() {
+            Presentation.SetTrigger(Out);
         }
     }
 }

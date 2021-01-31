@@ -85,7 +85,7 @@ namespace PlayerController {
 				DashEffect.SetActive(true);
 				StartCoroutine(Timer());
 				IEnumerator Timer() {
-					yield return new WaitForSeconds(0.8f);
+					yield return new WaitForSeconds(0.2f);
 					DashEffect.SetActive(false);
 				}
 			}

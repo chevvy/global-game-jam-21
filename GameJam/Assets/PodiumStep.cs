@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class PodiumStep : MonoBehaviour {
@@ -18,6 +19,7 @@ public class PodiumStep : MonoBehaviour {
         player.transform.rotation = playerSpawn.rotation;
         // set podium step to be same material
         AssignedPlayerMaterial = controller.GetPlayerMaterial();
-        GetComponent<MeshRenderer>().material = AssignedPlayerMaterial;
+        // GetComponent<MeshRenderer>().material = AssignedPlayerMaterial;
+        GetComponent<MeshRenderer>().material = GameManager.Instance.podiumMaterials[controller.playerID];
     }
 }
