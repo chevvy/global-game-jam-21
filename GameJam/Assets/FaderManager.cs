@@ -33,30 +33,70 @@ public class FaderManager : MonoBehaviour {
     }
 
     public void GoToMainLoop() {
-        Debug.Log("transition playing");
-        StartCoroutine(
-            FaderMixer.StartFade(
-                mixer.audioMixer, 
-                _mainLoopParam, 
-                transitionTime, 
-                0.0001f));
+        FadeOutMainLoop();
         ActiveTransitionSource.clip = menuToGameplayTransition;
         ActiveTransitionSource.Play();
+        FadeInTransition();
+        StartCoroutine(TimerBefore());
+        
+        IEnumerator TimerBefore() {
+        
+            yield return new WaitForSeconds(transitionTime);
+            FadeInMainLoop();
+            FadeOutTransition();
+            ActiveMainLoopSource.clip = gameplayLoop;
+            ActiveMainLoopSource.Play();
+        }
+    }
+
+    public void GoToEndLoop() {
+        FadeOutMainLoop();
+        ActiveTransitionSource.clip = gameplayToEndTransition;
+        ActiveTransitionSource.Play();
+        FadeInTransition();
+        StartCoroutine(TimerBefore());
+
+        IEnumerator TimerBefore() {
+            yield return new WaitForSeconds(transitionTime);
+            FadeInMainLoop();
+            FadeOutTransition();
+            ActiveMainLoopSource.clip = endLoop;
+            ActiveMainLoopSource.Play();
+        }
+    }
+    private void FadeInTransition() {
         StartCoroutine(
             FaderMixer.StartFade(
                 mixer.audioMixer,
                 _transitionParam,
                 transitionTime,
                 1f));
-        StartCoroutine(TimerBefore());
-
-        
-        // start coroutine pour faire jouer la main loop apres le transitiontime
     }
     
-    IEnumerator TimerBefore() {
-        yield return new WaitForSeconds(transitionTime);
-        ActiveMainLoopSource.clip = gameplayLoop;
-        ActiveMainLoopSource.Play();
+    private void FadeOutTransition() {
+        StartCoroutine(
+            FaderMixer.StartFade(
+                mixer.audioMixer,
+                _transitionParam,
+                transitionTime,
+                0.0001f));
+    }
+    private void FadeOutMainLoop() {
+        StartCoroutine(
+            FaderMixer.StartFade(
+                mixer.audioMixer,
+                _mainLoopParam,
+                transitionTime,
+                0.0001f));
+    }
+    
+    
+    private void FadeInMainLoop() {
+        StartCoroutine(
+            FaderMixer.StartFade(
+                mixer.audioMixer,
+                _mainLoopParam,
+                transitionTime,
+                1f));
     }
 }

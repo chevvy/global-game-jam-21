@@ -148,6 +148,7 @@ namespace Managers
         }
 
         private void FinishGame() {
+            faderManager.GoToEndLoop();
             foreach (KeyValuePair<int,int> playerAndScore in _scoreboard) {
                 if((playerAndScore.Value >= ScoreToWin)) {
                     uiScores.OnEndGame(playerAndScore.Key);
