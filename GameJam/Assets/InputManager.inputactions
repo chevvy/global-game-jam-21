@@ -269,6 +269,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d838854e-4bf8-4ce5-bdb0-3eaa9868e309",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e5b8909d-ee02-46f4-a612-edade6704c09",
                     "path": "<XInputController>/buttonWest",
                     "interactions": "",
@@ -302,6 +313,17 @@
                 },
                 {
                     "name": "",
+                    "id": "89baa37a-2cba-47fa-83e3-dfa11601e2b6",
+                    "path": "<DualShockGamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dig",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c9727ac9-16cd-4d33-ab08-9130e3eab5d2",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -329,6 +351,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79f23a4e-a8e5-4294-949d-7b4d0728d6b4",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false

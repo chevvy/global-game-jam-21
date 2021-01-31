@@ -42,6 +42,10 @@ namespace PlayerController {
 		public AudioSource hit1;
 		public AudioSource gainRing;
 		private AudioSource DigMiss => GameManager.Instance.digMiss;
+
+		public AudioSource walk1;
+		public AudioSource walk2;
+		public AudioSource walk3;
 		
 		#endregion
 
