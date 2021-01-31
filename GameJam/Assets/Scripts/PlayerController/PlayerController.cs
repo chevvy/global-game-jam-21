@@ -27,6 +27,7 @@ namespace PlayerController {
 		private bool _isDashing = false;
 		[SerializeField] private float dashDistance = 5f;
 		[SerializeField] private GameObject DashEffect;
+		public bool canDash = true;
 		
 		private float turnSmoothVelocity;
 
@@ -86,9 +87,12 @@ namespace PlayerController {
 				StartCoroutine(Timer());
 				IEnumerator Timer() {
 					yield return new WaitForSeconds(0.2f);
+					canDash = true;
 					DashEffect.SetActive(false);
 				}
 			}
+
+			if (!canDash) { return;	}
 			Vector3 dashVelocity = Vector3.Scale(
 				transform.forward,
 				dashDistance * new Vector3(
@@ -222,8 +226,9 @@ namespace PlayerController {
 		public void OnDash(InputAction.CallbackContext context) {
 			if (!CanPlayerAct()) { return; }
 
-			if (context.performed) {
+			if (context.performed && canDash) {
 				_isDashing = true;
+				canDash = false;
 			}
 		}
 

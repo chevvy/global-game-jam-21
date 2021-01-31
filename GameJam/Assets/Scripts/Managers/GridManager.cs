@@ -33,6 +33,10 @@ namespace Managers
         public int dataNodeMaxDelayBetweenSpawn = 5;
 
         void Awake() {
+            
+        }
+
+        public void InitGrid() {
             CheckForMissingComponents();
             InitializeFloorStructure();
             GenerateNewBatchOfDataNodes(numberOfDataNode);

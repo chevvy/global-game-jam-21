@@ -214,6 +214,7 @@ namespace Managers
         
         private void OnGameBegin() {
             Presentation.SetTrigger(Out);
+            gridManager.InitGrid();
         }
     }
 }
