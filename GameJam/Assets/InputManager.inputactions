@@ -388,7 +388,7 @@
                 {
                     "name": "",
                     "id": "d22d2713-1596-449b-9ee5-5b7535823f88",
-                    "path": "<DualShockGamepad>/leftTrigger",
+                    "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -399,7 +399,7 @@
                 {
                     "name": "",
                     "id": "5803d89c-e228-437e-be07-525b466fa9b7",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -410,7 +410,7 @@
                 {
                     "name": "",
                     "id": "40c822f9-8ad2-4bdd-90b9-267b03e80a44",
-                    "path": "<XInputController>/leftTrigger",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

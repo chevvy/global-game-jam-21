@@ -77,6 +77,7 @@ namespace PlayerController {
 
 			if (_isDashing) {
 				Dash();
+				_isDashing = false;
 			}
 			ApplyAttackForce();
 		}
@@ -86,12 +87,12 @@ namespace PlayerController {
 				DashEffect.SetActive(true);
 				StartCoroutine(Timer());
 				IEnumerator Timer() {
-					yield return new WaitForSeconds(0.2f);
+					yield return new WaitForSeconds(1f);
 					canDash = true;
 					DashEffect.SetActive(false);
 				}
 			}
-
+			Debug.Log("ALLO LOOP DASH");
 			if (!canDash) { return;	}
 			Vector3 dashVelocity = Vector3.Scale(
 				transform.forward,
@@ -224,12 +225,13 @@ namespace PlayerController {
 		}
 
 		public void OnDash(InputAction.CallbackContext context) {
-			if (!CanPlayerAct()) { return; }
-
-			if (context.performed && canDash) {
-				_isDashing = true;
-				canDash = false;
-			}
+			// if (!CanPlayerAct()) { return; }
+			//
+			// if (context.performed && canDash) {
+			// 	Debug.Log("Input dahs recu ACTIVATING");
+			// 	_isDashing = true;
+			// 	canDash = false;
+			// }
 		}
 
 		public void OnStart(InputAction.CallbackContext context) {
