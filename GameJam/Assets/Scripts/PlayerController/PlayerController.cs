@@ -41,7 +41,8 @@ namespace PlayerController {
 		public AudioSource emptyStrike;
 		public AudioSource hit1;
 		public AudioSource gainRing;
-
+		private AudioSource DigMiss => GameManager.Instance.digMiss;
+		
 		#endregion
 
 		#region Unity public fonctions
@@ -116,7 +117,10 @@ namespace PlayerController {
 				yield return new WaitForSeconds(0.2f);
 				GameManager.Instance.PlayerTakesDamages(playerID, transform.position);
 			}
-			
+		}
+
+		public void PlayDigSound() {
+			DigMiss.Play();
 		}
 
 		#region InputCallBack and Player Actions

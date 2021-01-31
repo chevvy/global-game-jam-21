@@ -28,6 +28,8 @@ namespace Managers
         private Random _random;
 
         public AudioSource dropRing;
+        public AudioSource digMiss;
+        public AudioSource digHit;
 
         #region Managers
 
