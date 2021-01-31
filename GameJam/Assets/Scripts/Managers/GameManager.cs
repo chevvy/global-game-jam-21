@@ -28,6 +28,7 @@ namespace Managers
         private Random _random;
 
         private List<GameObject> players;
+        [SerializeField] private List<Material> podiumMaterials;
 
         #region Audio
         public AudioSource dropRing;
@@ -158,7 +159,7 @@ namespace Managers
             foreach (KeyValuePair<int, int> playerAndScore in _scoreboard) {
                 winningScores.Add(playerAndScore.Value);
             }
-            winningScores.Sort();
+            winningScores.Sort((a,b) => b.CompareTo(a));
             foreach (var score in winningScores) {
                 foreach (var playerAndScore in _scoreboard) {
                     if (playerAndScore.Value == score) {

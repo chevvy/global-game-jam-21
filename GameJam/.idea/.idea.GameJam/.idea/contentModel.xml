@@ -7,8 +7,11 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="AttackEmiter.cs" t="Include" />
         <e p="GetInputEvent.cs" t="Include" />
         <e p="LootableDataNode.cs" t="Include" />
+        <e p="Podium.cs" t="Include" />
+        <e p="PodiumStep.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="DataNode" t="Include">
             <e p="Node.cs" t="Include" />
