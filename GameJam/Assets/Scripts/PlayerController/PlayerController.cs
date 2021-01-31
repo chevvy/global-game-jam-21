@@ -40,6 +40,7 @@ namespace PlayerController {
 
 		public AudioSource emptyStrike;
 		public AudioSource hit1;
+		public AudioSource gainRing;
 
 		#endregion
 
@@ -92,7 +93,7 @@ namespace PlayerController {
 			}
 		}
 
-		public void AddPoint() {
+		public void LootDataNode() {
 			GameManager.Instance.AddPointToPlayer(playerID);
 			goldBitLootedFX.SetActive(false);
 			goldBitLootedFX.SetActive(true);
@@ -102,6 +103,7 @@ namespace PlayerController {
 				yield return new WaitForSeconds(0.5f);
 				goldBitLootedFX.SetActive(false);
 			}
+			gainRing.Play();
 		}
 
 		public void GetsAttacked(Vector3 attackPosition) {
