@@ -34,6 +34,7 @@ namespace Managers
         public AudioSource dropRing;
         public AudioSource digMiss;
         public AudioSource digHit;
+        public FaderManager faderManager;
         #endregion
 
         #region Managers
@@ -71,6 +72,10 @@ namespace Managers
 
             if (podium == null) {
                 Debug.LogError("Missing podium on GameManager");
+            }
+            
+            if (faderManager == null) {
+                Debug.LogError("Missing faderManager on GameManager");
             }
         }
 
@@ -176,6 +181,12 @@ namespace Managers
             if(!RemovePointFromPlayer(playerID, amountOfnodeLost)) { return;};
             gridManager.SpawnLootableDataNode(amountOfnodeLost, playerPosition);
             dropRing.Play();
+        }
+
+        public void PressedStart() {
+            if (!IsGameFinished()) {
+                faderManager.GoToMainLoop();
+            }
         }
     }
 }

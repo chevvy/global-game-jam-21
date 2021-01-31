@@ -229,6 +229,7 @@ namespace PlayerController {
 
 		public void OnStart(InputAction.CallbackContext context) {
 			if (context.performed) {
+				GameManager.Instance.PressedStart();
 				if (GameManager.Instance.IsGameFinished()) {
 					SceneManager.LoadScene("PlayerControllerTest");
 				}
