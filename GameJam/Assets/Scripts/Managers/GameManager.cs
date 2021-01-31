@@ -30,7 +30,7 @@ namespace Managers
         private Random _random;
 
         private List<GameObject> players;
-        [SerializeField] private List<Material> podiumMaterials;
+        [SerializeField] public List<Material> podiumMaterials;
 
         [SerializeField] private Animator Presentation;
         [SerializeField] private Animator MapCenterCamera;

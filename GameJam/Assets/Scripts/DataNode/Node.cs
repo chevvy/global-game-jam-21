@@ -37,7 +37,7 @@ namespace DataNode {
         /// </summary>
         /// <returns></returns>
         IEnumerator WaitForNodeToStabilize() {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.2f);
             GetComponent<Rigidbody>().isKinematic = true;
             _isCheckingForFloor = false;
             digHit = GameManager.Instance.digHit;

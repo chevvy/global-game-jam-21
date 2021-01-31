@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Podium : MonoBehaviour {
-    [SerializeField] private PodiumStep[] _podiumSteps;
+    [FormerlySerializedAs("_podiumSteps")] [SerializeField] private PodiumStep[] podiumSteps;
 
     private List<GameObject> playersReference;
 
@@ -14,7 +15,7 @@ public class Podium : MonoBehaviour {
 
     public void EndGameSetup(List<int> winningOrder) {
         for (int i = 0; i < playersReference.Count; i++) {
-            _podiumSteps[i].SetupPodiumStep(playersReference[winningOrder[i]]);
+            podiumSteps[i].SetupPodiumStep(playersReference[winningOrder[i]]);
         }
     }
 }
