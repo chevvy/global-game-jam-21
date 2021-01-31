@@ -281,6 +281,12 @@ MonoBehaviour:
   playerHeight: 1.5
   goldBitLootedFX: {fileID: 8156005804742869514}
   cameraBrain: {fileID: 0}
+  playerMaterials:
+  - {fileID: 2100000, guid: 02c14164d934a7442b82a5f114c55d81, type: 2}
+  - {fileID: 2100000, guid: dfede50536fe6c44998b41e236f92c41, type: 2}
+  - {fileID: 2100000, guid: 50cae0cd7b16d7e4baf8730818c1b74f, type: 2}
+  - {fileID: 2100000, guid: c5ebd5791d94cee4d8b8756229ef6180, type: 2}
+  playerMeshRender: {fileID: 9099647283903438881}
   animator: {fileID: 3697170748071931498}
   emptyStrike: {fileID: 2624027210674906203}
   hit1: {fileID: 5725792720892849732}

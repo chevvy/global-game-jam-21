@@ -30,6 +30,9 @@ namespace PlayerController {
 		public GameObject goldBitLootedFX;
 		public CinemachineBrain cameraBrain;
 
+		[SerializeField] Material[] playerMaterials;
+		[SerializeField] private SkinnedMeshRenderer playerMeshRender;
+		
 		#region Animator variables
 		public Animator animator;
 		private static readonly int Move = Animator.StringToHash("move");
@@ -43,9 +46,8 @@ namespace PlayerController {
 		public AudioSource hit1;
 		public AudioSource gainRing;
 		private AudioSource DigMiss => GameManager.Instance.digMiss;
-
 		public AudioSource[] walkSFX;
-
+		
 		#endregion
 
 		#region Unity public fonctions
@@ -53,6 +55,14 @@ namespace PlayerController {
 			_gameManager = GameManager.Instance;
 			_gameManager.AddCameraTarget(this);
 			cameraBrain = _gameManager.cameraBrain;
+			if (playerMaterials[playerID] == null) {
+				Debug.LogError("Missing material for playerID on playerPrefab");
+			}
+
+			if (playerMeshRender == null) {
+				Debug.LogError("Missing meshRender reference on PlayerPrefab");
+			} 
+			playerMeshRender.material = playerMaterials[playerID];
 		}
 
 		private void Update() {
